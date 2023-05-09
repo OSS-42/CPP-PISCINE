@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:50:35 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/08 15:48:29 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:23:04 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ Bureaucrat::~Bureaucrat(void) {
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs) {
+	if (this == &rhs)
+		return (*this);
 	m_grade = rhs.m_grade;
 	return (*this);
 }
