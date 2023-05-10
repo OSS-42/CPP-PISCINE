@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 08:46:37 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/09 16:51:09 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:16:12 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class Bureaucrat;
 
 class AForm {
 	public:
+		AForm ();
 		AForm (std::string name, int Grade, int Execute);
 		AForm (const AForm& other);
 		~AForm (void);
@@ -50,7 +51,7 @@ class AForm {
 		};
 
 		void beSign(const Bureaucrat& value);
-		virtual void execute(const Bureaucrat& value) = 0;
+		virtual void execute(const Bureaucrat& value) const = 0;
 
 	private:
 		const std::string	m_name;

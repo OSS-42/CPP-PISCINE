@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:50:35 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/09 16:36:42 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:18:17 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,23 @@ void	Bureaucrat::gradeDown (void) {
 	}
 }
 
-void	Bureaucrat::signForm(Form& value) {
+void	Bureaucrat::signForm(AForm& value) {
 	try {
 		value.beSign(*this);
 		std::cout << GRN << this->getName() << " has been able to sign the form " << value.getName() << NC << std::endl;
 	}
 	catch (const std::exception& e) {
 		std::cerr << RED << this->getName() << " has not been able to sign the form " << value.getName() << " because " << e.what() << NC << std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(const AForm& form) {
+	try {
+		form.execute(*this);
+		std::cout << GRN << this->getName() << " has been able to execute the form " << form.getName() << NC << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cerr << RED << this->getName() << " has not been able to execute the form " << form.getName() << " because " << e.what() << NC << std::endl;
 	}
 }
 

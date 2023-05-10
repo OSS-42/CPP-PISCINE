@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   SchrubberyCreationForm.hpp                         :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 15:39:31 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/10 16:21:05 by ewurstei         ###   ########.fr       */
+/*   Created: 2023/05/10 16:06:44 by ewurstei          #+#    #+#             */
+/*   Updated: 2023/05/10 16:40:44 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCHRUBBERYCREATIONFORM_HPP
-# define SCHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
-# include "../inc/Form.hpp"
-# include <fstream>
+# include "Bureaucrat.hpp"
+# include "Form.hpp"
 
-class AForm;
-class Bureaucrat;
-
-class SchrubberyCreationForm : public AForm {
+class RobotomyRequestForm : public AForm {
 	public:
-		SchrubberyCreationForm (std::string target);
-		~SchrubberyCreationForm (void);
-		
+		RobotomyRequestForm(std::string target);
+		~RobotomyRequestForm();
+
 		std::string getTarget(void) const;
 		
 		void execute(const Bureaucrat& executor) const;
 
 	private:
-		SchrubberyCreationForm (const SchrubberyCreationForm& other);
-		SchrubberyCreationForm& operator=(const SchrubberyCreationForm& rhs);
-
+		RobotomyRequestForm(const RobotomyRequestForm& other);
+		RobotomyRequestForm& operator=(const RobotomyRequestForm& rhs);
 };
+
 
 #endif

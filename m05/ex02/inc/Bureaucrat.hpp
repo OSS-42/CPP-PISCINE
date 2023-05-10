@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/09 16:47:42 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:08:21 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 # include "Form.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 	public :
@@ -53,7 +53,8 @@ class Bureaucrat {
 				const char* what() const throw() {return ("Grade Too Low !");}
 		};
 
-		void	signForm(Form& value);
+		void	signForm(AForm& value);
+		void	executeForm(const AForm& form);
 
 	protected :
 

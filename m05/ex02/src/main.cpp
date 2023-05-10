@@ -6,11 +6,13 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/09 16:38:16 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/10 16:49:50 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/Bureaucrat.hpp" 
+# include "../inc/Bureaucrat.hpp"
+# include "../inc/SchrubberyCreationForm.hpp"
+# include "../inc/RobotomyRequestForm.hpp"
 
 int	main(void) {
 
@@ -30,8 +32,9 @@ int	main(void) {
 	}
 	
 	std::cout << std::endl;
-	std::cout << "--- Will ---" << std::endl;
+	std::cout << "--- Jack & Will ---" << std::endl;
 	try {
+		Bureaucrat Jack ("Jack", 142);
 		Bureaucrat Will ("Will", 42);
 		std::cout << std::endl;
 		Will.gradeUp();
@@ -40,46 +43,33 @@ int	main(void) {
 		std::cout << std::endl;
 
 		try {
-			std::cout << "------ Form generation ------" << std::endl;
-			std::cout << "alpha" << std::endl;
-			Form alpha("A42", 42, 42);
-			std::cout << "beta" << std::endl;
-			Form beta("A43", 42, 1);
-			std::cout << "zeta" << std::endl;
-			Form zeta("A21", 2, 1);
-			std::cout << "omega" << std::endl;
-			Form omega("A100", 150, 130);
+			std::cout << "------ SCHRUBBERIES ------" << std::endl;
+			std::cout << "jardin & gazon" << std::endl;
+			SchrubberyCreationForm alpha("jardin");
+			SchrubberyCreationForm beta("gazon");
 			std::cout << std::endl;
-
-			std::cout << "------ Bureaucrat sign form ------" << std::endl;
+			
 			Will.signForm(alpha);
-			Will.signForm(alpha);
-			Will.signForm(beta);
-			Will.signForm(zeta);
-			Will.signForm(omega);
+			Will.executeForm(alpha);
+			std::cout << std::endl;
+			
+			Jack.signForm(beta);
+			Jack.executeForm(beta);
 			std::cout << std::endl;
 
-			std::cout << "------ Is form sign ------" << std::endl;
-			std::cout << alpha << std::endl;
-			std::cout << beta << std::endl;
-			std::cout << zeta << std::endl;
-			std::cout << omega << std::endl;
+			std::cout << "------ DRILLS ------" << std::endl;
+			std::cout << "drill1 & drill2" << std::endl;
+			RobotomyRequestForm drill1("Jack");
+			RobotomyRequestForm drill2("Joe");
+			Will.signForm(drill1);
+			Will.executeForm(drill1);
 			std::cout << std::endl;
 
-			std::cout << "------ Bad form creation ------" << std::endl;
-			std::cout << "alien" << std::endl;
-			Form alien("B200", 1, 151);
-			std::cout << "morgan" << std::endl;
-			Form morgan("T800", -42, 149);
-		
-		}
-		catch(const std::exception& e) {
-			std::cerr << MAG << e.what() << ": Form could not be created." NC << std::endl;
-		}
-		try {
-			std::cout << "------ Bad form creation ------" << std::endl;
-			std::cout << "morgan" << std::endl;
-			Form morgan("T800", -42, 149);
+			Jack.signForm(drill1);
+			Jack.executeForm(drill1);
+			std::cout << std::endl;
+
+			
 		}
 		catch(const std::exception& e) {
 			std::cerr << MAG << e.what() << ": Form could not be created." NC << std::endl;
