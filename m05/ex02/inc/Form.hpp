@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 08:46:37 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/10 14:16:12 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:34:56 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class AForm {
 		AForm& operator=(const AForm& rhs);
 
 		std::string	getName(void) const;
-		std::string	getSign(void) const;
+		int			getSign(void) const;
 		int			getGrade(void) const;
 		int			getExecute(void) const;
 
@@ -48,6 +48,11 @@ class AForm {
 		class InvalidParameters : public std::exception {
 			public:
 				const char* what() const throw() {return ("Grade or Execute parameters invalid");}
+		};
+
+		class FormNotSignedException : public std::exception {
+			public:
+				const char* what() const throw() {return ("The Form is not Signed !");}
 		};
 
 		void beSign(const Bureaucrat& value);

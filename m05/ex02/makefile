@@ -15,7 +15,8 @@ RM = rm -rf
 HEADER = 	inc/Bureaucrat.hpp \
 			inc/Form.hpp \
 			inc/SchrubberyCreationForm.hpp \
-			inc/RobotomyRequestForm.hpp
+			inc/RobotomyRequestForm.hpp \
+			inc/PresidentialPardonForm.hpp
 D_SRC = src/
 D_OBJ = obj/
 OBJS = $(patsubst $(D_SRC)%.cpp,$(D_OBJ)%.o,$(SRCS))
@@ -23,7 +24,8 @@ SRCS = 	src/main.cpp \
 		src/Bureaucrat.cpp \
 		src/Form.cpp \
 		src/SchrubberyCreationForm.cpp \
-		src/RobotomyRequestForm.cpp
+		src/RobotomyRequestForm.cpp \
+		src/PresidentialPardonForm.cpp
 
 #------------------------------------------------------------------------------#
 #									 RULES									   #

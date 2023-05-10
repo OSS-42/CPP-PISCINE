@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:10:23 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/10 16:22:38 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:34:23 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // ------ CANNON -------
 SchrubberyCreationForm::SchrubberyCreationForm(std::string target) : AForm(target, 145, 137) {
-	std::cout << GRN "Schrubbery Creation Form generated" NC << std::endl;
+	std::cout << GRN "Schrubbery Creation Form for " << this->getName() << " generated" NC << std::endl;
 }
 
 // SchrubberyCreationForm::SchrubberyCreationForm(const SchrubberyCreationForm& other) {
@@ -29,7 +29,7 @@ SchrubberyCreationForm::SchrubberyCreationForm(std::string target) : AForm(targe
 // }
 
 SchrubberyCreationForm::~SchrubberyCreationForm(void) {
-	std::cout << RED "Schrubbery Creation Form deleted" NC << std::endl;
+	std::cout << RED "Schrubbery Creation Form for " << this->getName() << " deleted" NC << std::endl;
 }
 
 // ------- MEMBER FUNCTIONS --------
@@ -41,6 +41,8 @@ std::string SchrubberyCreationForm::getTarget(void) const {
 void SchrubberyCreationForm::execute (const Bureaucrat& executor) const {
 	if (executor.getGrade() > this->getGrade())
 		throw AForm::GradeTooLowException();
+	else if (this->getSign() == false)
+		throw AForm::FormNotSignedException();
 	else {
 		std::string extension = "_schrubbery";
 		std::string filename = this->getTarget() + extension;

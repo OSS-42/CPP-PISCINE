@@ -53,10 +53,10 @@ std::string AForm::getName(void) const {
 	return(this->m_name);
 }
 
-std::string AForm::getSign(void) const {
-	if (m_signed == 0)
-		return ("not signed");
-	return("signed");
+int AForm::getSign(void) const {
+	if (m_signed == false)
+		return (false);
+	return(true);
 }
 
 int AForm::getGrade(void) const{

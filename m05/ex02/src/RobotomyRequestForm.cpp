@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:07:01 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/10 16:57:35 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:34:32 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 // ------ CANNON -------
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm(target, 72, 45) {
-	std::cout << GRN "Default Robotomy Request Form generated" NC << std::endl;
+	std::cout << GRN "Default Robotomy Request Form for " << this->getName() << " generated" NC << std::endl;
 }
 
 // RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) {
@@ -31,7 +31,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm(target, 72,
 // }
 
 RobotomyRequestForm::~RobotomyRequestForm() {
-	std::cout << RED "Robotomy Request Form destroyed" NC << std::endl;
+	std::cout << RED "Robotomy Request Form for " << this->getName() << " destroyed" NC << std::endl;
 }
 
 // ----- MEMBER FUNCTIONS ------
@@ -42,6 +42,8 @@ std::string RobotomyRequestForm::getTarget() const {
 void	RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 	if (executor.getGrade() > this->getGrade())
 		throw AForm::GradeTooLowException();
+	else if (this->getSign() == false)
+		throw AForm::FormNotSignedException();
 	else {
 		std::cout << CYN "drill starting operation" NC << std::endl;
 		system("afplay special/electric-drill-01.mp3 &>/dev/null &");
