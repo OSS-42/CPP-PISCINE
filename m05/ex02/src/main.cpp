@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/10 17:36:30 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/12 09:08:05 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(void) {
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e) {
-		std::cerr << MAG << e.what() << " Invalid Parameters, cannot instanciate the bureaucrat." NC << std::endl;
+		std::cerr << MAG "Invalid Parameters, cannot instanciate the bureaucrat." << e.what() << NC << std::endl;
 	}
 	
 	std::cout << std::endl;
@@ -100,11 +100,11 @@ int	main(void) {
 			
 		}
 		catch(const std::exception& e) {
-			std::cerr << MAG << e.what() << ": Form could not be created." NC << std::endl;
+			std::cerr << MAG ": Form could not be created." << e.what() << NC << std::endl;
 		}
 	}
 	catch(const std::exception& e) {
-		std::cerr << MAG << e.what() << " Invalid Parameters, cannot instanciate the bureaucrat." NC << std::endl;
+		std::cerr << MAG "Invalid Parameters, cannot instanciate the bureaucrat." << e.what() << NC << std::endl;
 	}
 
 	return 0;

@@ -15,18 +15,18 @@
 // -------- CANNON ----------
 AForm::AForm(void) {
 	if (m_grade > 150 || m_grade < 1)
-		throw AForm::InvalidParameters();
+		throw std::out_of_range("bad arguments for the Form rules");
 	else if (m_execute >150 || m_execute < 1)
-		throw AForm::InvalidParameters();
+		throw std::out_of_range("bad arguments for the Form rules");
 	else
 		std::cout << GRN "Default Form has been generated" NC << std::endl;
 }
 
 AForm::AForm(std::string name, int grade, int execute) : m_name(name), m_signed(0), m_grade(grade), m_execute(execute) {
 	if (m_grade > 150 || m_grade < 1)
-		throw AForm::InvalidParameters();
+		throw std::out_of_range("bad arguments for the Form rules");
 	else if (m_execute >150 || m_execute < 1)
-		throw AForm::InvalidParameters();
+		throw std::out_of_range("bad arguments for the Form rules");
 	else
 		std::cout << GRN "Form has been generated" NC << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 08:35:59 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/11 12:08:21 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:08:39 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,10 @@ Intern::~Intern () {
 AForm*	Intern::makeForm(std::string formType, std::string formTarget) {
 	std::string formsInventory[3] = {"schrubbery", "robotomy", "pardon"};
 	
-	int	flag = 3;
-	for (int i = 0; i < 3; i++) {
-		if (!formsInventory[i].compare(formType)) {
-			flag = i;
+	int flag = 0;
+	for (; flag < 3; flag++) {
+		if (!formsInventory[flag].compare(formType)) {
 			break ;
-		} else {
-			flag = 4;
 		}
 	}
 
@@ -58,8 +55,8 @@ AForm*	Intern::makeForm(std::string formType, std::string formTarget) {
 		case 2 :
 			std::cout << CYN "Intern creates " << formType << NC << std::endl;
 			return (new PresidentialPardonForm(formTarget));
-		case 3 :
-			std::cout << GRN "There is no Form for the Intern" NC << std::endl;
+		default :
+			throw std::invalid_argument("Not a Form");
 			return (NULL);
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:06:42 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/10 17:34:27 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:14:37 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ std::string PresidentialPardonForm::getTarget() const {
 
 void	PresidentialPardonForm::execute(const Bureaucrat& executor) const {
 	if (executor.getGrade() > this->getGrade())
-		throw AForm::GradeTooLowException();
+		AForm::GradeTooLowException();
 	else if (this->getSign() == false)
 		throw AForm::FormNotSignedException();
 	else {

@@ -6,13 +6,13 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:07:01 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/10 17:34:32 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:37:26 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/RobotomyRequestForm.hpp"
 
-#include <cstdlib>
+# include <cstdlib>
 
 // ------ CANNON -------
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm(target, 72, 45) {
@@ -45,7 +45,18 @@ void	RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 	else if (this->getSign() == false)
 		throw AForm::FormNotSignedException();
 	else {
-		std::cout << CYN "drill starting operation" NC << std::endl;
-		system("afplay special/electric-drill-01.mp3 &>/dev/null &");
+		srand((unsigned) time(0));
+		bool start = (rand() % 2);
+		if (start == 0) {
+			std::cout << MAG ">>> drill not starting <<<" NC << std::endl;
+			std::cout <<std::endl;
+			system("afplay special/electric-drill-02.mp3 &>/dev/null &");
+			return ;
+		} else {
+			std::cout << CYN ">>> drill starting operation <<<" NC << std::endl;
+			std::cout <<std::endl;
+			system("afplay special/electric-drill-01.mp3 &>/dev/null &");
+			return ;
+		}
 	}
 }

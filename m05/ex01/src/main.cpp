@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/09 16:38:16 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/12 09:02:52 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void) {
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e) {
-		std::cerr << MAG << e.what() << " Invalid Parameters, cannot instanciate the bureaucrat." NC << std::endl;
+		std::cerr << MAG " Invalid Parameters, cannot instanciate the bureaucrat." << e.what() << NC << std::endl;
 	}
 	
 	std::cout << std::endl;
@@ -43,6 +43,7 @@ int	main(void) {
 			std::cout << "------ Form generation ------" << std::endl;
 			std::cout << "alpha" << std::endl;
 			Form alpha("A42", 42, 42);
+			std::cout << alpha << std::endl;
 			std::cout << "beta" << std::endl;
 			Form beta("A43", 42, 1);
 			std::cout << "zeta" << std::endl;
@@ -54,8 +55,14 @@ int	main(void) {
 			std::cout << "------ Bureaucrat sign form ------" << std::endl;
 			Will.signForm(alpha);
 			Will.signForm(alpha);
+			std::cout << std::endl;
 			Will.signForm(beta);
-			Will.signForm(zeta);
+			std::cout << std::endl;
+			while (zeta.getSign() == false)
+			{
+				Will.gradeUp();
+				Will.signForm(zeta);
+			}
 			Will.signForm(omega);
 			std::cout << std::endl;
 
@@ -82,11 +89,11 @@ int	main(void) {
 			Form morgan("T800", -42, 149);
 		}
 		catch(const std::exception& e) {
-			std::cerr << MAG << e.what() << ": Form could not be created." NC << std::endl;
+			std::cerr << MAG << e.what() << ": Form could not be created." << NC << std::endl;
 		}
 	}
 	catch(const std::exception& e) {
-		std::cerr << MAG << e.what() << " Invalid Parameters, cannot instanciate the bureaucrat." NC << std::endl;
+		std::cerr << MAG " Invalid Parameters, cannot instanciate the bureaucrat." << e.what() << NC << std::endl;
 	}
 
 	return 0;

@@ -6,18 +6,27 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 08:46:39 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/09 16:36:53 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/12 09:00:12 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/Bureaucrat.hpp"
 
 // -------- CANNON ----------
+Form::Form(void) {
+	if (m_grade > 150 || m_grade < 1)
+		throw std::out_of_range("bad arguments for the Form rules");
+	else if (m_execute >150 || m_execute < 1)
+		throw std::out_of_range("bad arguments for the Form rules");
+	else
+		std::cout << GRN "Default Form has been generated" NC << std::endl;
+}
+
 Form::Form(std::string name, int grade, int execute) : m_name(name), m_signed(0), m_grade(grade), m_execute(execute) {
 	if (m_grade > 150 || m_grade < 1)
-		throw Form::InvalidParameters();
+		throw std::out_of_range("bad arguments for the Form rules");
 	else if (m_execute >150 || m_execute < 1)
-		throw Form::InvalidParameters();
+		throw std::out_of_range("bad arguments for the Form rules");
 	else
 		std::cout << GRN "Form has been generated" NC << std::endl;
 }
@@ -44,10 +53,10 @@ std::string Form::getName(void) const {
 	return(this->m_name);
 }
 
-std::string Form::getSign(void) const {
+int Form::getSign(void) const {
 	if (m_signed == 0)
-		return ("not signed");
-	return("signed");
+		return (0);
+	return(1);
 }
 
 int Form::getGrade(void) const{
@@ -60,9 +69,7 @@ int	Form::getExecute(void) const {
 
 // -------- MEMBER FUNCTIONS ----------
 void	Form::beSign(const Bureaucrat& value) {
-	if (value.getGrade() < this->getGrade())
-		throw Form::GradeTooHighException();
-	else if (value.getGrade() > this->getExecute())
+	if (value.getGrade() > this->getGrade())
 		throw Form::GradeTooLowException();
 	else if (this->m_signed == true)
 		throw Form::FormAlreadySigned();

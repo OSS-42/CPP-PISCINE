@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/08 16:03:39 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/12 08:58:58 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void) {
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e) {
-		std::cerr << MAG << e.what() << " Invalid Parameters, cannot instanciate the bureaucrat." NC << std::endl;
+		std::cerr << MAG "Invalid Parameters, cannot instanciate the bureaucrat." << e.what() << NC << std::endl;
 	}
 	
 	std::cout << std::endl;
@@ -39,7 +39,7 @@ int	main(void) {
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e) {
-		std::cerr << MAG << e.what() << " Invalid Parameters, cannot instanciate the bureaucrat." NC << std::endl;
+		std::cerr << MAG "Invalid Parameters, cannot instanciate the bureaucrat." << e.what() << NC << std::endl;
 	}
 	
 	std::cout << std::endl;
@@ -47,13 +47,14 @@ int	main(void) {
 	try {
 		Bureaucrat Jack ("Jack", 150);
 		std::cout << std::endl;
-		Jack.gradeDown();
 		Jack.gradeUp();
+		Jack.gradeDown();
+		Jack.gradeDown();
 		std::cout << Jack << std::endl;
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e) {
-		std::cerr << MAG << e.what() << " Invalid Parameters, cannot instanciate the bureaucrat." NC << std::endl;
+		std::cerr << MAG "Invalid Parameters, cannot instanciate the bureaucrat." << e.what() << NC << std::endl;
 	}
 	
 	std::cout << std::endl;
@@ -67,7 +68,7 @@ int	main(void) {
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e) {
-		std::cerr << MAG << e.what() << " Invalid Parameters, cannot instanciate the bureaucrat." NC << std::endl;
+		std::cerr << MAG "Invalid Parameters, cannot instanciate the bureaucrat." << e.what() << NC << std::endl;
 	}
 	
 	std::cout << std::endl;
@@ -82,7 +83,7 @@ int	main(void) {
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e) {
-		std::cerr << MAG << e.what() << " Invalid Parameters, cannot instanciate the bureaucrat." NC << std::endl;
+		std::cerr << MAG "Invalid Parameters, cannot instanciate the bureaucrat." << e.what() << NC << std::endl;
 	}
 
 	return 0;

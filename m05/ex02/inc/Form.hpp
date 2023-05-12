@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 08:46:37 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/10 17:34:56 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/12 08:53:02 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ class AForm {
 		class FormAlreadySigned : public std::exception {
 			public:
 				const char* what() const throw() {return ("Form is already signed !");}
-		};
-
-		class InvalidParameters : public std::exception {
-			public:
-				const char* what() const throw() {return ("Grade or Execute parameters invalid");}
 		};
 
 		class FormNotSignedException : public std::exception {
