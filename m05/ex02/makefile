@@ -47,6 +47,7 @@ clean:
 
 fclean:	clean
 	@$(call fcleaning, $(RM) $(NAME))
+	@$(RM) *.dSYM
 	@$(RM) *_schrubbery
 
 re:	fclean all
