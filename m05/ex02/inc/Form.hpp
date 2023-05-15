@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 08:46:37 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/12 08:53:02 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/15 08:39:22 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ class AForm {
 	private:
 		const std::string	m_name;
 		bool				m_signed;
-		int					m_grade;
-		int					m_execute;
+		const int			m_grade;
+		const int			m_execute;
 };
 
 std::ostream& operator<<(std::ostream& o, const AForm& value);

@@ -13,7 +13,7 @@
 # include "../inc/Bureaucrat.hpp"
 
 // -------- CANNON ----------
-AForm::AForm(void) {
+AForm::AForm(void) : m_name("Default"), m_signed(0), m_grade(150), m_execute(150) {
 	if (m_grade > 150 || m_grade < 1)
 		throw std::out_of_range("bad arguments for the Form rules");
 	else if (m_execute >150 || m_execute < 1)
@@ -31,7 +31,7 @@ AForm::AForm(std::string name, int grade, int execute) : m_name(name), m_signed(
 		std::cout << GRN "Form has been generated" NC << std::endl;
 }
 
-AForm::AForm(const AForm& other) {
+AForm::AForm(const AForm& other) : m_name(other.m_name), m_signed(other.m_signed), m_grade(other.m_grade), m_execute(other.m_execute) {
 	*this = other;
 }
 
@@ -43,8 +43,6 @@ AForm& AForm::operator=(const AForm& rhs) {
 	if (this == &rhs)
 		return (*this);
 	m_signed = rhs.m_signed;
-	m_grade = rhs.m_grade;
-	m_execute = rhs.m_execute;
 	return (*this);
 }
 

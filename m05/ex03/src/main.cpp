@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/12 09:06:45 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/15 08:47:49 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,13 @@ int	main(void) {
 			Marvin.executeForm(*ppf);
 			std::cout << std::endl;
 
+			delete scf;
+			delete rrf;
+			delete ppf;
+			std::cout << std::endl;
+
 			std::cout << "------ BAD FORM ------" << std::endl;
-			std::cout << "Pardon1" << std::endl;
+			std::cout << "ParTon" << std::endl;
 			AForm*	ppf2;
 			ppf2 = Joe.makeForm("parton", "Arthur Dent");
 			std::cout << std::endl;
@@ -97,18 +102,13 @@ int	main(void) {
 			Marvin.signForm(*ppf2);
 			Marvin.executeForm(*ppf2);
 			std::cout << std::endl;
-
-			delete scf;
-			delete rrf;
-			delete ppf;
-			
 		}
 		catch(const std::exception& e) {
-			std::cerr << MAG << e.what() << ": Form could not be created." NC << std::endl;
+			std::cerr << MAG "Form could not be created. " << e.what() << NC << std::endl;
 		}
 	}
 	catch(const std::exception& e) {
-		std::cerr << MAG "Invalid Parameters, cannot instanciate the bureaucrat." << e.what() << NC << std::endl;
+		std::cerr << MAG "Invalid Parameters, cannot instanciate the bureaucrat. " << e.what() << NC << std::endl;
 	}
 
 	return 0;
