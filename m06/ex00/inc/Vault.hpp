@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/16 15:44:48 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:54:02 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define REDB "\e[41m"
 
 # include <iostream>
+# include <iomanip>
 # include <string>
 # include <sstream>
 # include <cctype>
@@ -52,7 +53,5 @@ class Vault {
 		double	m_dblvalue;
 		char	m_chrValue;
 };
-
-std::ostream& operator<<(std::ostream& o, const Vault& value);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/16 14:42:36 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:54:55 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,43 @@
 // std::stringstream ss;
 // ss << value;
 // ss >> newValue;
+//
 // or float newValue = static_cast<float>(value);
 // etc.
 
 int	main(int argc, char** argv) {
+	Vault	convert;
+	if (argc != 2)
+		std::cout << RED " usage: ./scalaire [arg]" NC << std::endl;
+
+	std::string value = argv[1];
+	
 	try {
-		Vault	convert;
-		if (argc != 2)
-			throw std::exception();
-		else {
-			std::string value = argv[1];
 			convert.setChar(value);
-			convert.setDouble(value);
-			convert.setFloat(value);
-			convert.setInt(value);
-			std::cout << convert << std::endl;
-		}
 	}
 	catch (std::exception& e) {
-		std::cout << e.what() << RED " usage: ./scalaire [arg]" NC << std::endl;
+		std::cerr << RED "Char Conversion error : " << e.what() << NC << std::endl;
+	}
+
+	try {
+			convert.setInt(value);
+	}
+	catch (std::exception& e) {
+		std::cerr << RED "Int Conversion error : " << e.what() << NC << std::endl;
+	}
+
+	try {
+			convert.setDouble(value);
+	}
+	catch (std::exception& e) {
+		std::cerr << RED "Double Conversion error : " << e.what() << NC << std::endl;
+	}
+
+	try {
+			convert.setFloat(value);
+	}
+	catch (std::exception& e) {
+		std::cerr << RED "Float Conversion error : " << e.what() << NC << std::endl;
 	}
 
 	return 0;
