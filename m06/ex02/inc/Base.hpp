@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/17 14:14:21 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:30:55 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <iomanip>
 # include <string>
 # include <limits>
+# include <cstdlib>
 
 class Base {
 	public:
@@ -36,5 +37,9 @@ class Base {
 		Base (const Base& other);
 		Base& operator=(const Base& rhs);
 };
+
+Base*	generate(void);
+void	identify(Base* p);
+void	identify(Base& p);
 
 #endif

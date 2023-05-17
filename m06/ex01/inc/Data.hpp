@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/17 13:31:16 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:13:40 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,28 @@
 # include <string>
 # include <limits>
 
-class Data {
-	public:
-		Data();
-		~Data();
+// class Data {
+// 	public:
+// 		Data();
+// 		~Data();
 
-		uintptr_t	getDeserVal(void) const;
-		Data*		getserVal(void) const;
-
-		uintptr_t	serialize(Data* ptr);
-		Data*		deserialize(uintptr_t raw);
+// 		uintptr_t	getDeserVal(void) const;
+// 		Data*		getserVal(void) const;
 		
-	private:
-		Data (const Data& other);
-		Data& operator=(const Data& rhs);
+// 	private:
+// 		Data (const Data& other);
+// 		Data& operator=(const Data& rhs);
 	
-		uintptr_t	m_deserVal;
-		Data*		m_serVal;
+// 		uintptr_t	m_deserVal;
+// 		Data*		m_serVal;
+// };
+
+struct Data {
+	uintptr_t	m_deserVal;
+	Data*		m_serVal;
 };
+
+uintptr_t	serialize(Data* ptr);
+Data*		deserialize(uintptr_t raw);
 
 #endif

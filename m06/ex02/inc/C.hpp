@@ -6,17 +6,24 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:22 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/17 14:15:40 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:23:58 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef C_HPP
 # define C_HPP
 
-# include "Base.hpp"
+# include "../inc/Base.hpp"
+# include "../inc/C.hpp"
 
 class C : public Base {
+	public:
+		C();
+		~C();
 	
+	private:
+		C(const C& other);
+		C& operator=(const C& rhs);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/17 13:57:12 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:57:09 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	main(void) {
 		uintptr_t	test;
 		Data*		test2;
 		
-		test = Vault.serialize(&Vault);
-		test2 = Vault.deserialize(test);
+		test = serialize(&Vault);
+		test2 = deserialize(test);
 
 		std::cout << "----- SERIALIZATION -----" << std::endl;
 		std::cout << MAG "Origin (&Vault): " << &Vault << NC << std::endl;
@@ -37,8 +37,8 @@ int	main(void) {
 		Data*		test4;
 
 		Vault2 = NULL;
-		test3 = Vault.serialize(Vault2);
-		test4 = Vault.deserialize(test3);
+		test3 = serialize(Vault2);
+		test4 = deserialize(test3);
 		std::cout << "----- SERIALIZATION -----" << std::endl;
 		std::cout << MAG "Origin (&Vault): " << Vault2 << NC << std::endl;
 		std::cout << GRN "Serial (test): " << test3 << NC << std::endl;
