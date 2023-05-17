@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/16 17:54:02 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/17 10:46:52 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ class Vault {
 	
 		int		m_intValue;
 		float	m_fltValue;
-		double	m_dblvalue;
+		double	m_dblValue;
 		char	m_chrValue;
 };
 

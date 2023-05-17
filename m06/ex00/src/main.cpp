@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/16 17:54:55 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/17 08:40:03 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 
 int	main(int argc, char** argv) {
 	Vault	convert;
-	if (argc != 2)
-		std::cout << RED " usage: ./scalaire [arg]" NC << std::endl;
+	if (argc != 2) {
+		std::cout << RED "usage: ./convert [arg]" NC << std::endl;
+		return 0;
+	}
 
 	std::string value = argv[1];
 	

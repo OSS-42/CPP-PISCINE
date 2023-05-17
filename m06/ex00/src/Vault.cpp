@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:50:35 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/16 17:59:03 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/17 11:39:36 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	Vault::getInt (void) const {
 }
 
 double Vault::getDouble(void) const {
-	return (m_dblvalue);
+	return (m_dblValue);
 }
 
 float Vault::getFloat(void) const {
@@ -38,16 +38,31 @@ char Vault::getChar(void) const {
 }
 
 void Vault::setChar(std::string value) {
-	if (value.length() != 1) {
+
+	if (value.length() != 1 && value.find_first_not_of(".+0123456789") != std::string::npos) {
 		std::cout << "chr: impossible" << std::endl;
 		return ;
 	}
-	
-	m_chrValue = value[0];
-	if (isprint(m_chrValue) == false)
+	try {
+		if (value.length() == 1 && value[0] >= 32 && (value[0] < 48 || value[0] > 57))
+			m_chrValue = value[0];
+		else
+			m_chrValue = std::stoi(value);
+		
+		std::cout << RED << (int)m_chrValue << NC << std::endl;
+		
+		if (isprint(m_chrValue) == false || m_chrValue < 32) {
 		std::cout << "chr: not displayable" << std::endl;
-	else
-		std::cout << "chr: " << m_chrValue << std::endl;
+		return ;
+	}
+	std::cout << "chr: '" << m_chrValue << "'" << std::endl;
+	}
+	catch (std::invalid_argument& ia) {
+		std::cerr << "chr: Invalid Argument" << std::endl;
+	}
+	catch (std::out_of_range& oor) {
+		std::cerr << "chr: Out of Range" << std::endl;
+	}
 }
 
 void Vault::setFloat (std::string value) {
@@ -62,7 +77,10 @@ void Vault::setFloat (std::string value) {
 	}
 	
 	try {
-		m_fltValue = std::stof(value);
+		if (value.length() == 1 && value[0] >= 32)
+			m_fltValue = value[0];
+		else
+			m_fltValue = std::stof(value);
 		std::cout << "flt: " << std::fixed << std::setprecision(prec) << m_fltValue << "f" << std::endl;
 	}
 	catch (std::invalid_argument& ia) {
@@ -85,8 +103,11 @@ void Vault::setDouble(std::string value) {
 	}
 	
 	try {
-		m_dblvalue = std::stod(value);
-		std::cout << "dbl: " << std::fixed << std::setprecision(prec) << m_dblvalue << std::endl;
+		if (value.length() == 1 && value[0] >= 32)
+			m_dblValue = value[0];
+		else
+			m_dblValue = std::stod(value);
+		std::cout << "dbl: " << std::fixed << std::setprecision(prec) << m_dblValue << std::endl;
 	}
 	catch (std::invalid_argument& ia) {
 		std::cerr << "dbl: Invalid Argument" << std::endl;
@@ -98,13 +119,25 @@ void Vault::setDouble(std::string value) {
 
 void Vault::setInt(std::string value) {
 	try {
-		m_intValue = std::stoi(value);
+		std::string keywords[6] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
+
+		for (int i = 0; i < 6; i++) {
+			if (!value.compare(keywords[i])) {
+				std::cout << "int: impossible" << std::endl;
+				return ;
+			}
+		}
+		
+		if (value.length() == 1 && value[0] >= 32)
+			m_intValue = value[0];
+		else
+			m_intValue = std::stoi(value);
 		std::cout << "int: " << m_intValue << std::endl;
 	}
 	catch (std::invalid_argument& ia) {
 		std::cerr << "int: Invalid Argument" << std::endl;
 	}
 	catch (std::out_of_range& oor) {
-		std::cerr << "int : Out of Range" << std::endl;
+		std::cerr << "int: Out of Range" << std::endl;
 	}
 }
