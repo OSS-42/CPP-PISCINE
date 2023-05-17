@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:10:33 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/17 16:54:40 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:35:10 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,19 @@ void	identify(Base* p) {
 
 void	identify(Base& p) {
 	try {
-		A& testA = dynamic_cast<A&>(*p);
+		A& testA = dynamic_cast<A&>(p);
 		(void) testA;
 		std::cout << GRN "p is an object of type class A" NC << std::endl;
 	}
 	catch(std::bad_cast& bc) {
 		try {
-			B& testB = dynamic_cast<B&>(*p);
+			B& testB = dynamic_cast<B&>(p);
 			(void) testB;
 			std::cout << CYN "p is an object of type class B" NC << std::endl;
 		}
 		catch (std::bad_cast& bc) {
 			try {
-				C& testC = dynamic_cast<C&>(*p);
+				C& testC = dynamic_cast<C&>(p);
 				(void) testC;
 				std::cout << MAG "p is an object of type class C" NC << std::endl;
 			}
@@ -83,4 +83,19 @@ void	identify(Base& p) {
 			}
 		}
 	}
+}
+
+int	main(void) {
+	
+	Base*	test = generate();
+	std::cout << "---- Identify * ----" << std::endl;
+	identify(*test);
+	std::cout << std::endl;
+
+	std::cout << "---- Identify & ----" << std::endl;
+	identify(*test);
+
+	delete test;
+	
+	return 0;
 }

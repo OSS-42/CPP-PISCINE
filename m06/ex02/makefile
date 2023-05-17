@@ -16,8 +16,7 @@ RM = rm -rf
 D_SRC = src/
 D_OBJ = obj/
 OBJS = $(patsubst $(D_SRC)%.cpp,$(D_OBJ)%.o,$(SRCS))
-SRCS = 	src/main.cpp \
-		src/Base.cpp
+SRCS = 	src/Base.cpp
 
 #------------------------------------------------------------------------------#
 #									 RULES									   #
@@ -31,7 +30,7 @@ $(NAME):	$(D_OBJ) $(OBJS)
 $(D_OBJ):
 	@mkdir -p $(D_OBJ)
 
-$(OBJS): $(D_OBJ)%.o : $(D_SRC)%.cpp $(HEADER)
+$(OBJS): $(D_OBJ)%.o : $(D_SRC)%.cpp
 	@$(call run_and_test, $(CC) $(CFLAGS) -c $< -o $@)
 
 clean:
@@ -40,7 +39,6 @@ clean:
 fclean:	clean
 	@$(call fcleaning, $(RM) $(NAME))
 	@$(RM) *.dSYM
-	@$(RM) *_schrubbery
 
 re:	fclean all
 
