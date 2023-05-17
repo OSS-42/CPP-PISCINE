@@ -2,7 +2,7 @@
 #								   VARIABLES								   #
 #------------------------------------------------------------------------------#
 # Filename
-NAME = bureaucrat
+NAME = base
 
 # Compiler and flags
 CC = c++
@@ -12,20 +12,12 @@ RM = rm -rf
 #------------------------------------------------------------------------------#
 #							SOURCES & DIRECTORIES							   #
 #------------------------------------------------------------------------------#
-HEADER = 	inc/Bureaucrat.hpp \
-			inc/Form.hpp \
-			inc/SchrubberyCreationForm.hpp \
-			inc/RobotomyRequestForm.hpp \
-			inc/PresidentialPardonForm.hpp
+# HEADER = 	
 D_SRC = src/
 D_OBJ = obj/
 OBJS = $(patsubst $(D_SRC)%.cpp,$(D_OBJ)%.o,$(SRCS))
 SRCS = 	src/main.cpp \
-		src/Bureaucrat.cpp \
-		src/Form.cpp \
-		src/SchrubberyCreationForm.cpp \
-		src/RobotomyRequestForm.cpp \
-		src/PresidentialPardonForm.cpp
+		src/Base.cpp
 
 #------------------------------------------------------------------------------#
 #									 RULES									   #
