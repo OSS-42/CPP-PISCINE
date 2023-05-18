@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:10:33 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/17 18:35:10 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/18 09:31:53 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # include <iomanip>
 # include <string>
 # include <cstdlib>
+# include<chrono> 
+# include<thread>
 
 // COLOURS CODES
 # define NC "\e[0m"
@@ -89,13 +91,40 @@ int	main(void) {
 	
 	Base*	test = generate();
 	std::cout << "---- Identify * ----" << std::endl;
-	identify(*test);
+	identify(test);
 	std::cout << std::endl;
 
 	std::cout << "---- Identify & ----" << std::endl;
 	identify(*test);
+	std::cout << std::endl;
+	
+	std::cout << "WAIT 750ms" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(750));
+	
+	Base*	test2 = generate();
+	std::cout << "---- Identify * ----" << std::endl;
+	identify(test2);
+	std::cout << std::endl;
 
+	std::cout << "---- Identify & ----" << std::endl;
+	identify(*test2);
+	std::cout << std::endl;
+	
+	std::cout << "WAIT 750ms" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(750));
+	
+	Base*	test3 = generate();
+	std::cout << "---- Identify * ----" << std::endl;
+	identify(test3);
+	std::cout << std::endl;
+
+	std::cout << "---- Identify & ----" << std::endl;
+	identify(*test3);
+	std::cout << std::endl;
+	
 	delete test;
+	delete test2;
+	delete test3;
 	
 	return 0;
 }
