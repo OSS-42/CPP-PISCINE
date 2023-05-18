@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:50:35 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/17 11:39:36 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/18 13:33:14 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,9 @@ void Vault::setChar(std::string value) {
 	}
 	try {
 		if (value.length() == 1 && value[0] >= 32 && (value[0] < 48 || value[0] > 57))
-			m_chrValue = value[0];
+			m_chrValue = static_cast<int>(value[0]);
 		else
 			m_chrValue = std::stoi(value);
-		
-		std::cout << RED << (int)m_chrValue << NC << std::endl;
 		
 		if (isprint(m_chrValue) == false || m_chrValue < 32) {
 		std::cout << "chr: not displayable" << std::endl;
@@ -78,7 +76,7 @@ void Vault::setFloat (std::string value) {
 	
 	try {
 		if (value.length() == 1 && value[0] >= 32)
-			m_fltValue = value[0];
+			m_fltValue = static_cast<float>(value[0]) ;
 		else
 			m_fltValue = std::stof(value);
 		std::cout << "flt: " << std::fixed << std::setprecision(prec) << m_fltValue << "f" << std::endl;
@@ -104,7 +102,7 @@ void Vault::setDouble(std::string value) {
 	
 	try {
 		if (value.length() == 1 && value[0] >= 32)
-			m_dblValue = value[0];
+			m_dblValue = static_cast<double>(value[0]);
 		else
 			m_dblValue = std::stod(value);
 		std::cout << "dbl: " << std::fixed << std::setprecision(prec) << m_dblValue << std::endl;
@@ -129,7 +127,7 @@ void Vault::setInt(std::string value) {
 		}
 		
 		if (value.length() == 1 && value[0] >= 32)
-			m_intValue = value[0];
+			m_intValue = static_cast<int>(value[0]);
 		else
 			m_intValue = std::stoi(value);
 		std::cout << "int: " << m_intValue << std::endl;
