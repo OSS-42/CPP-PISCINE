@@ -2,7 +2,7 @@
 #								   VARIABLES								   #
 #------------------------------------------------------------------------------#
 # Filename
-NAME = serialize
+NAME = iter
 
 # Compiler and flags
 CC = c++
@@ -12,12 +12,11 @@ RM = rm -rf
 #------------------------------------------------------------------------------#
 #							SOURCES & DIRECTORIES							   #
 #------------------------------------------------------------------------------#
-HEADER = 	inc/Data.hpp
+HEADER = 	inc/Iter.hpp
 D_SRC = src/
 D_OBJ = obj/
 OBJS = $(patsubst $(D_SRC)%.cpp,$(D_OBJ)%.o,$(SRCS))
-SRCS = 	src/main.cpp \
-		src/Data.cpp
+SRCS = 	src/main.cpp
 
 #------------------------------------------------------------------------------#
 #									 RULES									   #

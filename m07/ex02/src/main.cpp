@@ -6,11 +6,11 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/19 17:48:29 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:59:05 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/Iter.hpp"
+# include "../inc/Array.hpp"
 
 int main( void ) {
 

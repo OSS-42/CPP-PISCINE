@@ -2,7 +2,7 @@
 #								   VARIABLES								   #
 #------------------------------------------------------------------------------#
 # Filename
-NAME = base
+NAME = array
 
 # Compiler and flags
 CC = c++
@@ -12,11 +12,11 @@ RM = rm -rf
 #------------------------------------------------------------------------------#
 #							SOURCES & DIRECTORIES							   #
 #------------------------------------------------------------------------------#
-# HEADER = 	
+HEADER = 	inc/Array.hpp
 D_SRC = src/
 D_OBJ = obj/
 OBJS = $(patsubst $(D_SRC)%.cpp,$(D_OBJ)%.o,$(SRCS))
-SRCS = 	src/Base.cpp
+SRCS = 	src/main.cpp
 
 #------------------------------------------------------------------------------#
 #									 RULES									   #
@@ -30,7 +30,7 @@ $(NAME):	$(D_OBJ) $(OBJS)
 $(D_OBJ):
 	@mkdir -p $(D_OBJ)
 
-$(OBJS): $(D_OBJ)%.o : $(D_SRC)%.cpp
+$(OBJS): $(D_OBJ)%.o : $(D_SRC)%.cpp $(HEADER)
 	@$(call run_and_test, $(CC) $(CFLAGS) -c $< -o $@)
 
 clean:
@@ -38,6 +38,7 @@ clean:
 
 fclean:	clean
 	@$(call fcleaning, $(RM) $(NAME))
+	@$(RM) $(NAME)
 	@$(RM) *.dSYM
 
 re:	fclean all
