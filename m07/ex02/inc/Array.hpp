@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/23 13:18:21 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:10:56 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,34 @@
 template<typename T>
 class Array {
 	public:
-		Array() : m_array (new T[0]), m_size(0)					{ }
+		Array() : m_array(new T[0]), m_size(0)					{ }
 		Array(unsigned int n) : m_array(new T[n]), m_size(n)	{ }
 		Array(const Array& other) : m_array(new T [other.m_size]), m_size(other.m_size)	{
-												for (size_t i = 0; i < other.size(); i++) {
-												this->m_array[i] = other.m_array[i];} 
+			for (size_t i = 0; i < other.size(); i++) {
+			this->m_array[i] = other.m_array[i];} 
 		}
 
 		Array& operator=(const Array& rhs)	{ 
-								if (this != &rhs) {
-									delete [] m_array;
-									m_size = rhs.size;
-									m_array = new T [m_size];
-									for (size_t i = 0; i < other.size(); i++) {
-										m_array[i] = rhs.m_array[i];
-										}
-									}
-								return (*this);
+			if (this != &rhs) {
+				delete [] m_array;
+				m_size = rhs.size;
+				m_array = new T [m_size];
+				for (size_t i = 0; i < rhs.size(); i++) {
+					m_array[i] = rhs.m_array[i];
+					}
+				}
+			return (*this);
 		}
 
-		~Array()							{ delete [] m_array; }
+		T& operator[](unsigned int index) {
+		if (index >= m_size)
+			throw std::out_of_range("Array index out of bounds");
+		return m_array[index];
+	}
 
-		unsigned int size() const		{ return m_size; }
+		~Array()												{ delete [] m_array; }
+
+		unsigned int size() const								{ return m_size; }
 		
 	private:
 		T*				m_array;
