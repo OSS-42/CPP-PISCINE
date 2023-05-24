@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/19 17:57:51 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/24 08:50:36 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ void iter(U* table, size_t length, void (*function)(T&)) {
 }
 
 void addOne(int& num) {
+	std::cout << CYN " add +1 to table elements" NC << std::endl;
 	num++;
 }
 
 void addString(std::string& string) {
+	std::cout << CYN " append '_iter' to table elements" NC << std::endl;
 	string = string + "_iter";
 }
 
