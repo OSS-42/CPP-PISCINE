@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/24 13:58:24 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:54:13 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,12 @@
 
 template<typename T>
 void easyfind(T& lhs, int num) {
-	std::set<int> table;
-	std::set<int> it;
+	typename T::iterator it = lhs.find(num);
 
-	table = lhs;
-	
-	if (it = table.find(num));
-		std::cout << GRN "found " << num << " at idx #" << it << NC << std::endl;
+	if (it != lhs.end())
+		std::cout << GRN "Element " << num << " found !" << NC << std::endl;
 	else
-		throw std::exception("element not find");
+		std::cout << RED "Element " << num << " not found !" << NC << std::endl;
 
 	return ;
 };
