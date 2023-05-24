@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/23 16:10:56 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/24 08:43:18 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ class Array {
 		if (index >= m_size)
 			throw std::out_of_range("Array index out of bounds");
 		return m_array[index];
-	}
+		}
 
 		~Array()												{ delete [] m_array; }
 
