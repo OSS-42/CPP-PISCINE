@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/24 13:44:10 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:58:24 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,17 @@
 
 template<typename T>
 void easyfind(T& lhs, int num) {
-	std::set<int> 
-	std::cout << GRN "swap done" NC << std::endl;
-}
+	std::set<int> table;
+	std::set<int> it;
 
-template<typename T>
-const T min(T lhs, T rhs) {
-	return ((lhs <= rhs) ? lhs : rhs);
-}
+	table = lhs;
+	
+	if (it = table.find(num));
+		std::cout << GRN "found " << num << " at idx #" << it << NC << std::endl;
+	else
+		throw std::exception("element not find");
 
-template<typename T>
-const T max(T lhs, T rhs) {
-	return ((lhs >= rhs) ? lhs : rhs);
-}
+	return ;
+};
 
 #endif

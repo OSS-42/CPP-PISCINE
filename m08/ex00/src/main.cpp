@@ -6,30 +6,24 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/19 15:38:06 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:53:40 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/Whatever.hpp"
+# include "../inc/easyfind.hpp"
 
 int main( void ) {
 
-	int a = 2;
-	int b = 3;
+	try {
+		int tableA[5] = {0, -21, -42, 42, 21};
 
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-
-	
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-	
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+		easyfind(tableA, 42);
+		easyfind(tableA, -42);
+		easyfind(tableA, 142);
+	}
+	catch (std::exception& e) {
+		std::cout << RED ">>> unexpected error : " << e.what() << NC << std::endl;
+	}
 
 	return 0;
 
