@@ -2,7 +2,7 @@
 #								   VARIABLES								   #
 #------------------------------------------------------------------------------#
 # Filename
-NAME = easyfind
+NAME = span
 
 # Compiler and flags
 CC = c++
@@ -12,11 +12,12 @@ RM = rm -rf
 #------------------------------------------------------------------------------#
 #							SOURCES & DIRECTORIES							   #
 #------------------------------------------------------------------------------#
-HEADER = 	inc/easyfind.hpp
+HEADER = 	inc/Span.hpp
 D_SRC = src/
 D_OBJ = obj/
 OBJS = $(patsubst $(D_SRC)%.cpp,$(D_OBJ)%.o,$(SRCS))
-SRCS = 	src/main.cpp
+SRCS = 	src/main.cpp \
+		src/Span.cpp
 
 #------------------------------------------------------------------------------#
 #									 RULES									   #

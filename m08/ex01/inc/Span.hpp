@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/25 11:25:05 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:37:32 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 class Span {
 	public:
+		Span();
 		Span(unsigned int N);
 		Span(const Span& other);
 		Span& operator=(const Span& rhs);
