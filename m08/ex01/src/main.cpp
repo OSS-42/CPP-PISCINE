@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/25 15:38:57 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:49:59 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@ int main()
 		sp.addNumber(9);
 		sp.addNumber(11);
 		
-		for (std::set<int>::iterator it = sp.begin(); it != sp.end(); ++it) {
+		for () {
 			std::cout << *it << std::endl;
 		}
+
+		sp.addNumber(42);
+		
 		// std::cout << sp.shortestSpan() << std::endl;
 		// std::cout << sp.longestSpan() << std::endl;
 

@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/25 15:37:32 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:31:59 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <iomanip>
 # include <string>
 # include <algorithm>
-# include <set>
+# include <vector>
 
 class Span {
 	public:
@@ -36,14 +36,15 @@ class Span {
 		Span& operator=(const Span& rhs);
 		~Span();
 
+		unsigned int getSize(void);
 		void addNumber(unsigned int N);
 		
 		unsigned int shortestSpan(void);
 		unsigned int longestSpan(void);
 
 	private:
-
-		std::set<unsigned int> m_container;
+		unsigned int				m_size;
+		std::vector<unsigned int>	m_vec;
 
 };
 
