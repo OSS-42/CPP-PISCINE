@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/25 18:31:59 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/26 00:12:54 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ class Span {
 		Span& operator=(const Span& rhs);
 		~Span();
 
-		unsigned int getSize(void);
-		void addNumber(unsigned int N);
+		unsigned int 	getSize(void) const;
+		void			printValues(void) const;
+		void 			addNumber(unsigned int N);
+		void			addBigNumbers(void);
 		
-		unsigned int shortestSpan(void);
-		unsigned int longestSpan(void);
+		unsigned int 	shortestSpan(void);
+		unsigned int 	longestSpan(void);
 
 	private:
 		unsigned int				m_size;

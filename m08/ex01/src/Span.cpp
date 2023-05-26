@@ -6,15 +6,15 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:48:12 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/25 18:49:41 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/26 00:26:30 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/Span.hpp"
 
-Span::Span() : m_size(0), m_vec(0) { }
+Span::Span() : m_size(0), m_vec() { }
 
-Span::Span(unsigned int N) : m_size(N), m_vec(N) { 
+Span::Span(unsigned int N) : m_size(N), m_vec() { 
 	
 }
 
@@ -30,7 +30,7 @@ Span& Span::operator=(const Span& rhs) {
 	return *this;
 }
 
-Span::~Span() {}
+Span::~Span(void) {}
 
 void	Span::addNumber(unsigned int Q) {
 	
@@ -41,10 +41,52 @@ void	Span::addNumber(unsigned int Q) {
 
 }
 
-unsigned int Span::getSize(void) {
+unsigned int Span::getSize(void) const {
 	return (m_size);
 }
 
-// unsigned int longestSpan(void) {
+void Span::printValues(void) const {
+	std::cout << "Values in Vector : ";
+	for (std::vector<unsigned int>::const_iterator it = m_vec.begin(); it != m_vec.end(); ++it) {
+        std::cout << *it << ' ';
+    }
+    std::cout << std::endl;
+}
+
+unsigned int Span::longestSpan(void) {
+	unsigned int	max = *std::max_element(m_vec.begin(), m_vec.end());
+	unsigned int	min = *std::min_element(m_vec.begin(), m_vec.end());
 	
-// }
+	return (max - min);
+}
+
+unsigned int Span::shortestSpan(void) {
+	if (m_vec.size() < 2)
+		throw std::runtime_error("Two few stored values.");
+	
+	std::vector<unsigned int> sorted(m_vec);
+	std::sort(sorted.begin(), sorted.end());
+	
+	unsigned int minSpan = sorted[1] - sorted[0];
+	
+	for (size_t idx = 2; idx < sorted.size(); ++idx) {
+		unsigned int testSpan = sorted[idx] - sorted[idx-1];
+		if (testSpan < minSpan)
+			minSpan = testSpan;
+	}
+	return (minSpan);
+}
+	
+void	Span::addBigNumbers(void) {
+	srand((unsigned) time(0));
+
+	std::vector<unsigned int> random;
+	for (unsigned int i = 0; i < m_size; ++i) {
+		unsigned int value = (rand() % 30000 + 1);
+		random.push_back(value);
+	}
+
+	for (std::vector<unsigned int>::iterator it = random.begin(); it != random.end(); ++it) {
+		addNumber(*it);
+	}
+}
