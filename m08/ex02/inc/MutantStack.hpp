@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/26 11:32:13 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:26:45 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-# define SPAN_HPP
+#ifndef MUTANTSTACK_HPP
+# define MUTANTSTACK_HPP
 
 // COLOURS CODES
 # define NC "\e[0m"
@@ -26,32 +26,21 @@
 # include <iomanip>
 # include <string>
 # include <algorithm>
-# include <vector>
+# include <stack>
 
-class Span {
+template <class T>
+class MutantStack {
 	public:
-		Span();
-		Span(unsigned int N);
-		Span(const Span& other);
-		Span& operator=(const Span& rhs);
-		~Span();
+		MutantStack() : m_stack()						{ };
+		MutantStack(const MutantStack& other)			{*this = other};
+		MutantStack& operator=(const MutantStack& rhs)	{if (this == &rhs) return (*this); return *this;}
+		~MutantStack();									{ };
 
-		unsigned int 	getSize(void) const;
-		unsigned int	getValue1(void) const;
-		unsigned int	getValue2(void) const;
-		void			printValues(void) const;
-		void 			addNumber(unsigned int N);
-		void			addBigNumbers(void);
-		
-		unsigned int 	shortestSpan(void);
-		unsigned int 	longestSpan(void);
+		using MutantStack::operator=();
 
 	private:
-		unsigned int				m_size;
-		std::vector<unsigned int>	m_vec;
-
-		unsigned int				m_value1;
-		unsigned int				m_value2;
+		unsigned int	m_size;
+		std::stack<T>	m_stack;
 
 };
 
