@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/26 13:26:45 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:21:49 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,27 @@ template <class T>
 class MutantStack {
 	public:
 		MutantStack() : m_stack()						{ };
-		MutantStack(const MutantStack& other)			{*this = other};
+		MutantStack(const MutantStack& other)			{*this = other;};
 		MutantStack& operator=(const MutantStack& rhs)	{if (this == &rhs) return (*this); return *this;}
-		~MutantStack();									{ };
+		~MutantStack()									{ };
 
-		using MutantStack::operator=();
+		size_t	size(void) const {
+			return m_stack.size();
+		}
+		
+		void	push(const T& value) {
+			m_stack.push(value);
+		}
+
+		void	pop(void) const {
+			m_stack.pop(value);
+		}
+
+		void	top(void) const {
+			m_stack.top(value);
+		}
 
 	private:
-		unsigned int	m_size;
 		std::stack<T>	m_stack;
 
 };
