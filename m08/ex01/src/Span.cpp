@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:48:12 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/26 00:26:30 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:30:56 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void Span::printValues(void) const {
 }
 
 unsigned int Span::longestSpan(void) {
+	if (m_vec.size() < 2)
+		throw std::runtime_error("Two few stored values.");
 	unsigned int	max = *std::max_element(m_vec.begin(), m_vec.end());
 	unsigned int	min = *std::min_element(m_vec.begin(), m_vec.end());
 	

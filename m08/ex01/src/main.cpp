@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/26 00:08:50 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:35:11 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int main()
 		std::cout << "Longest Span = " << sp2.longestSpan() << std::endl;
 		std::cout << "Shortest Span = " << sp2.shortestSpan() << std::endl;
 
-		// return 0;
 	}
 	catch (std::exception& e) {
 		std::cout << RED ">>> error : " << e.what() << " <<<" NC << std::endl;
@@ -77,4 +76,5 @@ int main()
 	catch (std::exception& e) {
 		std::cout << RED ">>> error : " << e.what() << " <<<" NC << std::endl;
 	}
+	return 0;
 }
