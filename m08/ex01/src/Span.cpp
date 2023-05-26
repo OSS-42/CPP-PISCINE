@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:48:12 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/26 10:30:56 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:50:12 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ unsigned int Span::getSize(void) const {
 	return (m_size);
 }
 
+unsigned int Span::getValue1(void) const {
+	return (m_value1);
+}
+
+unsigned int Span::getValue2(void) const {
+	return (m_value2);
+}
+
 void Span::printValues(void) const {
 	std::cout << "Values in Vector : ";
 	for (std::vector<unsigned int>::const_iterator it = m_vec.begin(); it != m_vec.end(); ++it) {
@@ -59,6 +67,9 @@ unsigned int Span::longestSpan(void) {
 	unsigned int	max = *std::max_element(m_vec.begin(), m_vec.end());
 	unsigned int	min = *std::min_element(m_vec.begin(), m_vec.end());
 	
+	m_value1 = min;
+	m_value2 = max;
+	
 	return (max - min);
 }
 
@@ -70,12 +81,18 @@ unsigned int Span::shortestSpan(void) {
 	std::sort(sorted.begin(), sorted.end());
 	
 	unsigned int minSpan = sorted[1] - sorted[0];
+	m_value1 = sorted[1];
+	m_value2 = sorted[0];
 	
 	for (size_t idx = 2; idx < sorted.size(); ++idx) {
-		unsigned int testSpan = sorted[idx] - sorted[idx-1];
-		if (testSpan < minSpan)
+		unsigned int testSpan = sorted[idx] - sorted[idx - 1];
+		if (testSpan < minSpan) {
 			minSpan = testSpan;
+			m_value1 = sorted[idx];
+			m_value2 = sorted[idx - 1];
+		}
 	}
+
 	return (minSpan);
 }
 	

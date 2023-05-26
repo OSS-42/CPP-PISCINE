@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/26 10:35:11 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:51:52 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int main()
 
 		sp.printValues();
 		std::cout << "Longest Span = " << sp.longestSpan() << std::endl;
+		std::cout << GRN "The longest span is between the values " << sp.getValue2() << " and " << sp.getValue1() << "\n" NC << std::endl; 
+	
 		std::cout << "Shortest Span = " << sp.shortestSpan() << std::endl;
+		std::cout << GRN "The shortest span is between the values " << sp.getValue2() << " and " << sp.getValue1() << "\n" NC << std::endl;
 
 		Span sp2 = Span(1);
 		
@@ -69,8 +72,13 @@ int main()
 
 		std::cout << "Size of vector : " << sp.getSize() << std::endl;
 		sp.printValues();
+		std::cout << std::endl;
 		std::cout << "Longest Span = " << sp.longestSpan() << std::endl;
+		std::cout << GRN "The longest span is between the values " << sp.getValue2() << " and " << sp.getValue1() << "\n" NC << std::endl; 
+	
 		std::cout << "Shortest Span = " << sp.shortestSpan() << std::endl;
+		std::cout << GRN "The shortest span is between the values " << sp.getValue2() << " and " << sp.getValue1() << "\n" NC << std::endl;
+
 
 	}
 	catch (std::exception& e) {

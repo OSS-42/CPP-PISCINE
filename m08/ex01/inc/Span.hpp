@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/26 00:12:54 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:49:10 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ class Span {
 		~Span();
 
 		unsigned int 	getSize(void) const;
+		unsigned int	getValue1(void) const;
+		unsigned int	getValue2(void) const;
 		void			printValues(void) const;
 		void 			addNumber(unsigned int N);
 		void			addBigNumbers(void);
@@ -47,6 +49,9 @@ class Span {
 	private:
 		unsigned int				m_size;
 		std::vector<unsigned int>	m_vec;
+
+		unsigned int				m_value1;
+		unsigned int				m_value2;
 
 };
 
