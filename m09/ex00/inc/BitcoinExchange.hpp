@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/30 13:33:24 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/05/30 15:27:46 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ class BitcoinExchange {
 		BitcoinExchange& operator=(const BitcoinExchange& rhs);
 		~BitcoinExchange (void);
 
-		void exchange(void) ;
-		unsigned int get_btcValue(std::string date);
+		void			exchange(std::string filename) ;
+		bool			storeDB(void);
+		void			checkInput(std::string filename);
+		unsigned int 	get_btcValue(std::string date);
 
 	private:
 		std::map<std::string, unsigned int>	_btcDB;
-		
+		std::map<std::string, unsigned int> _btcInput;
 };
 
 #endif
