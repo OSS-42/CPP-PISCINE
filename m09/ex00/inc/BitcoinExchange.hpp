@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/30 15:27:46 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/02 08:54:31 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <iomanip>
 # include <string>
 # include <fstream>
+# include <algorithm>
 # include <map>
 
 
@@ -36,14 +37,17 @@ class BitcoinExchange {
 		BitcoinExchange& operator=(const BitcoinExchange& rhs);
 		~BitcoinExchange (void);
 
-		void			exchange(std::string filename) ;
-		bool			storeDB(void);
-		void			checkInput(std::string filename);
-		unsigned int 	get_btcValue(std::string date);
+		void	exchange(const std::string& filename);
+		bool	storeDB(void);
+		void	checkInput(const std::string& filename);
+		long	findRate(const std::string& date);
 
 	private:
 		std::map<std::string, unsigned int>	_btcDB;
-		std::map<std::string, unsigned int> _btcInput;
 };
+
+bool	isDateGood(const std::string& date);
+bool	isLeap(int year);
+
 
 #endif
