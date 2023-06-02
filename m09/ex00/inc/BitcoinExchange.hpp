@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/02 10:12:44 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:48:02 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <iomanip>
 # include <string>
 # include <fstream>
+# include <sstream>
 # include <algorithm>
 # include <ctime>
 # include <map>
@@ -39,16 +40,19 @@ class BitcoinExchange {
 		~BitcoinExchange (void);
 
 		void	exchange(const std::string& filename);
-		bool	storeDB(void);
+		void	storeDB(void);
 		void	checkInput(const std::string& filename);
-		long	findRate(const std::string& date);
+		double	findRate(const std::string& date);
 
 	private:
 		std::map<std::string, unsigned int>	_btcDB;
 };
 
-bool	isDateGood(const std::string& date);
-bool	isLeap(int year);
+bool		isValueGood(const std::string& rawValue);
+bool		isDateGood(const std::string& date);
+bool		isLeap(int year);
+bool		isBeforeFirst(const std::string& date, const std::map<std::string, double>& _btcDB);
+std::string	substractDay(const std::string& date);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/30 15:27:00 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/02 13:03:17 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main (int argc, char **argv) {
 		if (inFile.is_open() == false) {
 			std::cerr << RED "error: cannot open file: " << filename << NC << std::endl;
 			inFile.close();
-			return ;
+			return 1;
 		}
 		
 		try {
