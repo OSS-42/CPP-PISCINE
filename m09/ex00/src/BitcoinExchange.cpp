@@ -12,6 +12,8 @@
 
 # include "../inc/BitcoinExchange.hpp"
 
+// ------ CANNON FORM ------
+
 BitcoinExchange::BitcoinExchange(void) {
 	std::cout << GRN "Exchange is now open" NC << std::endl;
 }
@@ -30,6 +32,8 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
 BitcoinExchange::~BitcoinExchange(void) {
 	std::cout << RED "Exchange is now closed" NC << std::endl;
 }
+
+// ----- MEMBER FUNCTIONS -----
 
 void	BitcoinExchange::exchange(const std::string& filename) {
 	if (int copy = storeDB() == false)
@@ -78,16 +82,24 @@ bool	BitcoinExchange::storeDB(void) {
 	
 	std::string	line;
 	while (std::getline("data.csv", line)) {
-		std::pair <std::string, double> data;
-		if (_btcDB.find("date", "exchange_rate"))
-			;
-		else {
-			int	pos = line.find(",");
-			if (pos == line.npos())
-				std::cerr << RED << line << " : wrong DB format" NC << std::endl;
-			data = std::make_pair(line.substr(0, pos), line.substr(pos + 1, line.size());
-			_btcDB.insert(data);
-		}
+		std::string date = line.substr(0, pos);
+		std::string rawRate = line.substr(pos + 1; line.size());
+		if (isDateGood(date) && isValueGood(rawRate)) {
+			long								rate = std::stol(rawRate);
+			std::pair <std::string, double>		data;
+			if (_btcDB.find("date", "exchange_rate"))
+				;
+			else {
+				int	pos = line.find(",");
+				if (pos == line.npos()) {
+					throw std::runtime_error("wrong DB format");
+				} else {
+					data = std::make_pair(line.substr(0, pos), line.substr(pos + 1, line.size()));
+					_btcDB[date] = rawRate;
+				}
+			}
+		} else 
+			throw std::runtime_error("wrong DB format");
 	}
 
 	return true;

@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/02 08:54:31 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/02 10:12:44 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <string>
 # include <fstream>
 # include <algorithm>
+# include <ctime>
 # include <map>
 
 
