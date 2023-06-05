@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:01:10 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/05 15:34:10 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:24:40 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ BitcoinExchange::~BitcoinExchange(void) {
 void	BitcoinExchange::exchange(const std::string& filename) {
 	storeDB();
 	checkInput(filename);
-
-	
 }
 
 void	BitcoinExchange::checkInput(const std::string& filename) {
@@ -58,7 +56,7 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 		else {
 			size_t	pos = line.find("|");
 			if (pos == std::string::npos)
-				std::cerr << RED << line << " : wrong input format" NC << std::endl;
+				std::cerr << RED << line << "wrong input format" NC << std::endl;
 			else {
 				std::string date = line.substr(0, pos);
 				std::string rawAmount = line.substr(pos + 1, line.size());
@@ -66,13 +64,18 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 					double	value;
 					double	rate;
 					double	amount;
+					
 					amount = std::stod(rawAmount);
-					rate = findRate(date);
-					if (rate == -1)
-						std::cout << CYN "No exchange rate found, date invalid" NC << std::endl;
-					else {
-						value = rate * amount;
-						std::cout << "The exchange value of " << amount << "BTC on " << date << " is " GRN << value << NC << std::endl;
+					if (isBeforeFirst(date, _btcDB)) {
+						std::cerr << RED "date before DB first date" NC << std::endl;
+					} else {
+						rate = findRate(date);
+						if (rate == -1)
+							std::cout << CYN "No exchange rate found, date invalid" NC << std::endl;
+						else {
+							value = rate * amount;
+							std::cout << "The exchange value of " << amount << "BTC on " << date << " is " GRN << value << NC << std::endl;
+						}
 					}
 				}
 			}
@@ -110,17 +113,12 @@ void	BitcoinExchange::storeDB(void) {
 
 double	BitcoinExchange::findRate(const std::string& date) {
 	
-	if (isBeforeFirst(date, _btcDB)) {
-		std::cerr << RED "date before DB first date" NC << std::endl;
-		return -1;
+	if (_btcDB.find(date) == _btcDB.end()) {
+		findRate(substractDay(date));
+		return 0;
 	} else {
-		if (_btcDB.find(date) == _btcDB.end()) {
-			findRate(substractDay(date));
-			return 0;
-		} else {
-			double rate = _btcDB.find(date)->second;
-			return (rate);
-		}
+		double rate = _btcDB.find(date)->second;
+		return (rate);
 	}
 }
 
@@ -189,6 +187,7 @@ bool	isBeforeFirst(const std::string& date, const std::map<std::string, double>&
 	// 	throw std::runtime_error("DB is empty");
 
 	std::string firstDate = btcDB.begin()->first;
+	std::cout << date << " vs " << firstDate << std::endl;
 	if (date < firstDate)
 		return true;
 	else
