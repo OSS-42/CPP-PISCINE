@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:01:10 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/02 15:56:18 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/05 13:03:14 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,12 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 					double	amount;
 					amount = std::stod(rawAmount);
 					rate = findRate(date);
-					value = rate * amount;
-					std::cout << "The exchange value of " << amount << "BTC on " << date << " is " GRN << value << NC << std::endl;
+					if (rate == -1)
+						std::cout << CYN "No exchange rate found, date invalid" NC << std::endl;
+					else {
+						value = rate * amount;
+						std::cout << "The exchange value of " << amount << "BTC on " << date << " is " GRN << value << NC << std::endl;
+					}
 				}
 			}
 		}
@@ -77,7 +81,7 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 void	BitcoinExchange::storeDB(void) {
 
 	std::ifstream database;
-	database.open("data.csv");
+	database.open("src/data.csv");
 	if (database.is_open() == false)
 		throw std::runtime_error("cannot open DB file");
 	
@@ -105,15 +109,16 @@ double	BitcoinExchange::findRate(const std::string& date) {
 	
 	if (isBeforeFirst(date, _btcDB)) {
 		std::cerr << RED "date before DB first date" NC << std::endl;
-		return NULL;
-	}
-	else {
-		if (_btcDB.find(date) == _btcDB.end())
+		return -1;
+	} else {
+		if (_btcDB.find(date) == _btcDB.end()) {
 			findRate(substractDay(date));
+			return 0;
 		} else {
 			double rate = _btcDB.find(date)->second;
 			return (rate);
 		}
+	}
 }
 
 // ----- OTHER FUNCTIONS ------
@@ -188,7 +193,7 @@ std::string	substractDay(const std::string& date) {
 	std::mktime(&time);
 
 	char buffer[10];
-	std::strftime(buffer, sizeof(buffer), "%Y-%m-%d", &t);
+	std::strftime(buffer, sizeof(buffer), "%Y-%m-%d", &time);
 
 	return std::string (buffer);
 }

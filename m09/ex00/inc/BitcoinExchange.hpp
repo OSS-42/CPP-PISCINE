@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/02 15:48:02 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/05 12:21:24 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ class BitcoinExchange {
 		double	findRate(const std::string& date);
 
 	private:
-		std::map<std::string, unsigned int>	_btcDB;
+		std::map<std::string, double>	_btcDB;
 };
 
 bool		isValueGood(const std::string& rawValue);
