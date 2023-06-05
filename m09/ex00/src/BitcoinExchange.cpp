@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:01:10 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/05 13:03:14 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:34:10 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 
 	std::string	line;
 	while (std::getline(sourceFile, line)) {
-		if (line.find("date") != std::string::npos && line.find("value") != std::string::npos)
+		if (line.find("date") != std::string::npos || line.find("value") != std::string::npos) {
+			std::cout << CYN "continue #1" NC << std::endl;
 			continue;
+		}
 		else {
 			size_t	pos = line.find("|");
 			if (pos == std::string::npos)
@@ -90,19 +92,20 @@ void	BitcoinExchange::storeDB(void) {
 		size_t pos = line.find(",");
 		if (pos == std::string::npos)
 				throw std::runtime_error("wrong DB format. Usage 'date,rate'");
+		if (line.find("date") != std::string::npos || line.find("exchange_rate") != std::string::npos) {
+			std::cout << CYN "continue #2" NC << std::endl;
+			continue ;
+		}
 		std::string date = line.substr(0, pos);
 		std::string rawRate = line.substr(pos + 1, line.size());
 		if (isDateGood(date) && isValueGood(rawRate)) {
-			if (line.find("date") != std::string::npos || line.find("exchange_rate") != std::string::npos)
-				continue ;			
-			else {
-				long								rate = std::stol(rawRate);
-				std::pair <std::string, double>		data;
-				data = std::make_pair(date, rate);
-			}
+			long								rate = std::stol(rawRate);
+			std::pair <std::string, double>		data;
+			data = std::make_pair(date, rate);
 		} else 
 			throw std::runtime_error("wrong DB date or value formatting");
 	}
+	std::cout << GRN ">>> DB Stored, Exchange ready. <<<" NC << std::endl;
 }
 
 double	BitcoinExchange::findRate(const std::string& date) {
@@ -128,20 +131,26 @@ bool	isDateGood(const std::string& date) {
 	std::istringstream ss(date);
 	ss >> std::get_time(&time, "%Y-%m-%d");
 	if (ss.fail()) {
+		std::cout << RED "date KO #0" NC << std::endl;
 		return false;
 	} else {
 		if (time.tm_mon < 0 || time.tm_mon > 11) {
+			std::cout << RED "date KO #1" NC << std::endl;
 			return false;
 		}
 		if (time.tm_mday < 1 || time.tm_mday > 31) {
+			std::cout << RED "date KO #2" NC << std::endl;
 			return false;
 		}
 		if (time.tm_mon == 1) {
 			if (isLeap(1900 + time.tm_year)) {
-				if (time.tm_mday > 29)
+				if (time.tm_mday > 29) {
+					std::cout << RED "date KO #3" NC << std::endl;
 					return false;
+				}
 			} else {
 				if (time.tm_mday > 28) {
+					std::cout << RED "date KO #4" NC << std::endl;
 					return false;
 				}
 			}
@@ -152,6 +161,7 @@ bool	isDateGood(const std::string& date) {
 			}
 		}
 	}
+	std::cout << GRN "date OK" NC << std::endl;
 	return true;
 }
 
@@ -170,12 +180,13 @@ bool	isValueGood(const std::string& rawValue) {
 	ss >> value;
 	if (ss.fail() || !ss.eof())
 		return false;
+	std::cout << GRN "value OK" NC << std::endl;
 	return true;
 }
 
 bool	isBeforeFirst(const std::string& date, const std::map<std::string, double>& btcDB) {
-	if (btcDB.empty())
-		throw std::runtime_error("DB is empty");
+	// if (btcDB.empty())
+	// 	throw std::runtime_error("DB is empty");
 
 	std::string firstDate = btcDB.begin()->first;
 	if (date < firstDate)
