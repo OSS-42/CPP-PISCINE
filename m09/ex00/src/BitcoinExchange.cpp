@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:01:10 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/05 16:24:40 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/06 00:07:45 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 				std::cerr << RED << line << "wrong input format" NC << std::endl;
 			else {
 				std::string date = line.substr(0, pos);
+				std::cout << CYN << date << NC << std::endl;
 				std::string rawAmount = line.substr(pos + 1, line.size());
+				std::cout << CYN << rawAmount << NC << std::endl;
 				if (isDateGood(date) && isValueGood(rawAmount)) {
 					double	value;
 					double	rate;
