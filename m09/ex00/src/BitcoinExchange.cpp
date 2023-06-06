@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:01:10 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/06 00:07:45 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/06 10:18:37 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,14 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 					
 					amount = std::stod(rawAmount);
 					if (isBeforeFirst(date, _btcDB)) {
-						std::cerr << RED "date before DB first date" NC << std::endl;
+						std::cerr << date << " : " << RED << "date before DB first date, no exchange rate." NC << std::endl;
 					} else {
 						rate = findRate(date);
 						if (rate == -1)
-							std::cout << CYN "No exchange rate found, date invalid" NC << std::endl;
+							std::cout << date << " : " << RED "No exchange rate found, date invalid" NC << std::endl;
 						else {
 							value = rate * amount;
+							std::cout << rate << std::endl;
 							std::cout << "The exchange value of " << amount << "BTC on " << date << " is " GRN << value << NC << std::endl;
 						}
 					}
@@ -104,9 +105,10 @@ void	BitcoinExchange::storeDB(void) {
 		std::string date = line.substr(0, pos);
 		std::string rawRate = line.substr(pos + 1, line.size());
 		if (isDateGood(date) && isValueGood(rawRate)) {
-			long								rate = std::stol(rawRate);
-			std::pair <std::string, double>		data;
-			data = std::make_pair(date, rate);
+			double	rate = std::stod(rawRate);
+			std::cout << rate << std::endl;
+			_btcDB.insert(std::make_pair(date, rate));
+			std::cout << _btcDB.find("2021-04-15")->second << std::endl;
 		} else 
 			throw std::runtime_error("wrong DB date or value formatting");
 	}
@@ -116,12 +118,10 @@ void	BitcoinExchange::storeDB(void) {
 double	BitcoinExchange::findRate(const std::string& date) {
 	
 	if (_btcDB.find(date) == _btcDB.end()) {
-		findRate(substractDay(date));
-		return 0;
-	} else {
-		double rate = _btcDB.find(date)->second;
-		return (rate);
+		std::cout << "coucou" << std::endl;
+		// findRate(substractDay(date));
 	}
+	return (_btcDB.find(date)->second);
 }
 
 // ----- OTHER FUNCTIONS ------
