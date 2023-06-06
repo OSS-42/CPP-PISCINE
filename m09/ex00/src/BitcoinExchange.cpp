@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:01:10 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/06 13:18:28 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:08:38 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 			continue;
 		}
 		else {
-			size_t	pos = line.find("|");
+			size_t	pos = line.find(" | ");
 			if (pos == std::string::npos)
-				std::cerr << RED << line << "wrong input format" NC << std::endl;
+				std::cerr << line  << " : " << RED "wrong input format" NC << std::endl;
 			else {
-				std::string date = line.substr(0, pos - 1);
-				std::string rawAmount = line.substr(pos + 1, line.size());
+				std::string date = line.substr(0, pos);
+				std::string rawAmount = line.substr(pos + 3, line.size());
 				if (isDateGood(date) && isValueGood(rawAmount)) {
 					double	value;
 					double	rate;
@@ -74,11 +74,11 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 							std::cout << date << " : " << RED "No exchange rate found, date invalid" NC << std::endl;
 						else {
 							value = rate * amount;
-							std::cout << std::fixed << "The exchange value of " << amount << "BTC on " << date << " is " GRN << value << NC << std::endl;
+							std::cout << std::fixed << "The exchange value of " << amount << "BTC on " << date << " at rate of " << rate << " is " GRN << value << NC << std::endl;
 						}
 					}
 				} else
-					std::cerr << date << RED " : Input date issue." NC << std::endl;
+					std::cerr << line  << " : " << RED "input issue." NC << std::endl;
 			}
 		}
 	}
