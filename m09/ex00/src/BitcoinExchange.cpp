@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:01:10 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/05 16:24:40 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/06 09:13:07 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 					
 					amount = std::stod(rawAmount);
 					if (isBeforeFirst(date, _btcDB)) {
+						std::cout << "coucou" << std::endl;
 						std::cerr << RED "date before DB first date" NC << std::endl;
 					} else {
 						rate = findRate(date);
@@ -102,9 +103,8 @@ void	BitcoinExchange::storeDB(void) {
 		std::string date = line.substr(0, pos);
 		std::string rawRate = line.substr(pos + 1, line.size());
 		if (isDateGood(date) && isValueGood(rawRate)) {
-			long								rate = std::stol(rawRate);
-			std::pair <std::string, double>		data;
-			data = std::make_pair(date, rate);
+			double								rate = std::stod(rawRate);
+			_btcDB.insert(std::make_pair(date, rate));
 		} else 
 			throw std::runtime_error("wrong DB date or value formatting");
 	}
@@ -114,9 +114,11 @@ void	BitcoinExchange::storeDB(void) {
 double	BitcoinExchange::findRate(const std::string& date) {
 	
 	if (_btcDB.find(date) == _btcDB.end()) {
+		std::cout << "salut" << std::endl;
 		findRate(substractDay(date));
 		return 0;
 	} else {
+		std::cout << "ciao" << std::endl;
 		double rate = _btcDB.find(date)->second;
 		return (rate);
 	}
