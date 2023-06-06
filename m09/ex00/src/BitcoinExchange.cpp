@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:01:10 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/06 10:32:43 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:44:08 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ BitcoinExchange::~BitcoinExchange(void) {
 
 void	BitcoinExchange::exchange(const std::string& filename) {
 	storeDB();
-	checkInput(filename);
+	// checkInput(filename);
 }
 
 void	BitcoinExchange::checkInput(const std::string& filename) {
@@ -68,8 +68,8 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 					double	amount;
 					
 					amount = std::stod(rawAmount);
-					if (isBeforeFirst(date, _btcDB)) {
-						std::cerr << date << " : " << RED << "date before DB first date, no exchange rate." NC << std::endl;
+					if (isBeforeFirst(date, _btcDB) || isAfterToday(date)) {
+						std::cerr << date << " : " << RED << "date before DB first date or after today, no exchange rate." NC << std::endl;
 					} else {
 						rate = findRate(date);
 						if (rate == -1)
@@ -106,12 +106,14 @@ void	BitcoinExchange::storeDB(void) {
 		std::string rawRate = line.substr(pos + 1, line.size());
 		if (isDateGood(date) && isValueGood(rawRate)) {
 			double	rate = std::stod(rawRate);
-			std::cout << rate << std::endl;
 			_btcDB.insert(std::make_pair(date, rate));
-			std::cout << _btcDB.find("2021-04-15")->second << std::endl;
 		} else 
 			throw std::runtime_error("wrong DB date or value formatting");
 	}
+	std::cout << CYN "DB Check" NC << std::endl;
+	std::cout << _btcDB.find("2021-04-15")->second << " vs (62969.12)" << std::endl;
+	std::cout << _btcDB.find("2010-08-20")->second << " vs (0,07)" << std::endl;
+	std::cout << _btcDB.find("2022-03-29")->second << " vs (47115.93)" << std::endl;
 	std::cout << GRN ">>> DB Stored, Exchange ready. <<<" NC << std::endl;
 }
 
@@ -191,6 +193,21 @@ bool	isBeforeFirst(const std::string& date, const std::map<std::string, double>&
 	std::string firstDate = btcDB.begin()->first;
 	std::cout << date << " vs " << firstDate << std::endl;
 	if (date < firstDate)
+		return true;
+	else
+		return false;
+}
+
+bool isAfterToday(const std::string& date) {
+	std::time_t now = std::time(0);
+	std::tm* now_tm = std::localtime(&now);
+
+    char buffer[11];
+    std::strftime(buffer, sizeof(buffer), "%Y-%m-%d", now_tm);
+
+    std::string currentDate(buffer);
+
+    if (date > currentDate)
 		return true;
 	else
 		return false;

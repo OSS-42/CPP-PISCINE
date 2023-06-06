@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/05 12:21:24 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:30:13 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 # include <ctime>
 # include <map>
 
-
 class BitcoinExchange {
 	public:
 		BitcoinExchange (void);
@@ -52,7 +51,7 @@ bool		isValueGood(const std::string& rawValue);
 bool		isDateGood(const std::string& date);
 bool		isLeap(int year);
 bool		isBeforeFirst(const std::string& date, const std::map<std::string, double>& _btcDB);
+bool		isAfterToday(const std::string& date);
 std::string	substractDay(const std::string& date);
-
 
 #endif
