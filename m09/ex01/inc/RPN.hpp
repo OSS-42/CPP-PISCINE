@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-# define SPAN_HPP
+#ifndef RPN_HPP
+# define RPN_HPP
 
 // COLOURS CODES
 # define NC "\e[0m"
@@ -28,13 +28,13 @@
 # include <algorithm>
 # include <vector>
 
-class Span {
+class RPN {
 	public:
-		Span();
-		Span(unsigned int N);
-		Span(const Span& other);
-		Span& operator=(const Span& rhs);
-		~Span();
+		RPN();
+		RPN(unsigned int N);
+		RPN(const RPN& other);
+		RPN& operator=(const RPN& rhs);
+		~RPN();
 
 		unsigned int 	getSize(void) const;
 		unsigned int	getValue1(void) const;
@@ -43,15 +43,11 @@ class Span {
 		void 			addNumber(unsigned int N);
 		void			addBigNumbers(void);
 		
-		unsigned int 	shortestSpan(void);
-		unsigned int 	longestSpan(void);
+		unsigned int 	shortestRPN(void);
+		unsigned int 	longestRPN(void);
 
 	private:
-		unsigned int				m_size;
 		std::vector<unsigned int>	m_vec;
-
-		unsigned int				m_value1;
-		unsigned int				m_value2;
 
 };
 
