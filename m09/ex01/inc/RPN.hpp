@@ -25,6 +25,8 @@
 # include <iostream>
 # include <iomanip>
 # include <string>
+# include <fstream>
+# include <sstream>
 # include <algorithm>
 # include <stack>
 
@@ -35,11 +37,13 @@ class RPN {
 		RPN& operator=(const RPN& rhs);
 		~RPN();
 
-		void	argCheck(std::string args);
+		double	calculation(double arg1, double arg2, std::string sign);
 
 	private:
 		std::stack<unsigned int>	m_pile;
 
 };
+
+bool	isArgNumber(const std::string& arg)
 
 #endif
