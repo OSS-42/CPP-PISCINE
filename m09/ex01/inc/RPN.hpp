@@ -31,10 +31,11 @@
 class RPN {
 	public:
 		RPN();
-		RPN(unsigned int N);
 		RPN(const RPN& other);
 		RPN& operator=(const RPN& rhs);
 		~RPN();
+
+		void	argCheck(std::string args);
 
 	private:
 		std::stack<unsigned int>	m_pile;
