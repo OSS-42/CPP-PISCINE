@@ -26,7 +26,7 @@
 # include <iomanip>
 # include <string>
 # include <algorithm>
-# include <vector>
+# include <stack>
 
 class RPN {
 	public:
@@ -47,7 +47,7 @@ class RPN {
 		unsigned int 	longestRPN(void);
 
 	private:
-		std::vector<unsigned int>	m_vec;
+		std::stack<unsigned int>	m_pile;
 
 };
 
