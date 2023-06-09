@@ -6,83 +6,28 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/26 10:51:52 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:54:52 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/Span.hpp"
 # include <cstdlib>
 
-int main()
-{
+int main(int argc, char* argv) {
+	if (argc != 2)
+		std::cerr << RED "Error. Usage : ./RPN \"values and operation\"" << std::endl;
+		
+		
+		
 	try {
-		std::cout << "\n" << CYN "---- BASES TESTS ----" NC << std::endl;
-		Span sp = Span(5);
 		
-		sp.addNumber(6);
-		sp.addNumber(3);
-		sp.addNumber(17);
-		sp.addNumber(9);
-		sp.addNumber(11);
+		RPN calculator;
+		calculator.try();
 		
-		sp.printValues();
-
-		sp.addNumber(42);
 	}
 	catch (std::exception& e) {
-		std::cout << RED ">>> error : " << e.what() << " <<<" NC << std::endl;
-	}
-
-	try {
-		std::cout << "\n" << CYN "---- TESTS 2 ----" NC << std::endl;
-		
-		Span sp = Span(5);
-		
-		sp.addNumber(6);
-		sp.addNumber(3);
-		sp.addNumber(17);
-		sp.addNumber(9);
-		sp.addNumber(11);
-
-		sp.printValues();
-		std::cout << "Longest Span = " << sp.longestSpan() << std::endl;
-		std::cout << GRN "The longest span is between the values " << sp.getValue2() << " and " << sp.getValue1() << "\n" NC << std::endl; 
-	
-		std::cout << "Shortest Span = " << sp.shortestSpan() << std::endl;
-		std::cout << GRN "The shortest span is between the values " << sp.getValue2() << " and " << sp.getValue1() << "\n" NC << std::endl;
-
-		Span sp2 = Span(1);
-		
-		std::cout << std::endl;
-		sp2.addNumber(6);
-		sp2.printValues();
-		std::cout << "Longest Span = " << sp2.longestSpan() << std::endl;
-		std::cout << "Shortest Span = " << sp2.shortestSpan() << std::endl;
-
-	}
-	catch (std::exception& e) {
-		std::cout << RED ">>> error : " << e.what() << " <<<" NC << std::endl;
+		std::cerr << RED ">>> Unexpected behavior : " << e.what() << " <<<" NC << std::endl;
 	}
 	
-	try {
-		std::cout << "\n" << CYN "---- TESTS 3 ----" NC << std::endl;
-		
-		Span sp = Span(15000);
-		sp.addBigNumbers();
-
-		std::cout << "Size of vector : " << sp.getSize() << std::endl;
-		sp.printValues();
-		std::cout << std::endl;
-		std::cout << "Longest Span = " << sp.longestSpan() << std::endl;
-		std::cout << GRN "The longest span is between the values " << sp.getValue2() << " and " << sp.getValue1() << "\n" NC << std::endl; 
-	
-		std::cout << "Shortest Span = " << sp.shortestSpan() << std::endl;
-		std::cout << GRN "The shortest span is between the values " << sp.getValue2() << " and " << sp.getValue1() << "\n" NC << std::endl;
-
-
-	}
-	catch (std::exception& e) {
-		std::cout << RED ">>> error : " << e.what() << " <<<" NC << std::endl;
-	}
 	return 0;
 }

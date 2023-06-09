@@ -36,16 +36,6 @@ class RPN {
 		RPN& operator=(const RPN& rhs);
 		~RPN();
 
-		unsigned int 	getSize(void) const;
-		unsigned int	getValue1(void) const;
-		unsigned int	getValue2(void) const;
-		void			printValues(void) const;
-		void 			addNumber(unsigned int N);
-		void			addBigNumbers(void);
-		
-		unsigned int 	shortestRPN(void);
-		unsigned int 	longestRPN(void);
-
 	private:
 		std::stack<unsigned int>	m_pile;
 
