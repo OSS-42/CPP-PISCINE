@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:48:12 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/17 13:40:13 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:29:23 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ RPN::RPN(std::string args) {
 		if (isArgNumber(arg) == false || arg.find_first_not_of("+-*/") != std::string::npos)
 			throw std::runtime_error("Invalid value");
 		else if (isArgNumber(arg) == true) {
-			m_pile.push(arg);
+			double arg1 = std::stod(arg);
+			m_pile.push(arg1);
 		}
 		else if (arg.find_first_not_of("+-*/") != std::string::npos) {
 			double arg1 = m_pile.top();
 			m_pile.pop();
 			double arg2 = m_pile.top();
+			m_pile.pop();
 			m_pile.push(calculation(arg1, arg2, arg));
 		}
 	}
