@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:48:12 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/09 15:03:50 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:40:13 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,26 @@ If it's an operator, we pop two numbers from the stack, perform the operation, a
 In the end, we should be left with one number on the stack, which is the result.
 */
 
-RPN::RPN() {
+RPN::RPN(std::string args) {
 	std::cout << GRN "RPN calculator active" NC << std::endl;
+
+	std::string delimiter = " ";
+
+	for (int idx = 0; idx < args.size(); ++idx) {
+		std::string arg = args.substr(idx, args.find(delimiter));
+		
+		if (isArgNumber(arg) == false || arg.find_first_not_of("+-*/") != std::string::npos)
+			throw std::runtime_error("Invalid value");
+		else if (isArgNumber(arg) == true) {
+			m_pile.push(arg);
+		}
+		else if (arg.find_first_not_of("+-*/") != std::string::npos) {
+			double arg1 = m_pile.top();
+			m_pile.pop();
+			double arg2 = m_pile.top();
+			m_pile.push(calculation(arg1, arg2, arg));
+		}
+	}
 }
 
 RPN::RPN(const RPN& other) {

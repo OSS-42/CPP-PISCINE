@@ -32,7 +32,7 @@
 
 class RPN {
 	public:
-		RPN();
+		RPN(std::string args);
 		RPN(const RPN& other);
 		RPN& operator=(const RPN& rhs);
 		~RPN();
@@ -44,6 +44,6 @@ class RPN {
 
 };
 
-bool	isArgNumber(const std::string& arg)
+bool	isArgNumber(const std::string& arg);
 
 #endif
