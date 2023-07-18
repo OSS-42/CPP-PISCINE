@@ -2,7 +2,7 @@
 #								   VARIABLES								   #
 #------------------------------------------------------------------------------#
 # Filename
-NAME = mutant
+NAME = PmergeMe
 
 # Compiler and flags
 CC = c++
@@ -12,11 +12,12 @@ RM = rm -rf
 #------------------------------------------------------------------------------#
 #							SOURCES & DIRECTORIES							   #
 #------------------------------------------------------------------------------#
-HEADER = 	inc/MutantStack.hpp
+HEADER = 	inc/PmergeMe.hpp
 D_SRC = src/
 D_OBJ = obj/
 OBJS = $(patsubst $(D_SRC)%.cpp,$(D_OBJ)%.o,$(SRCS))
-SRCS = 	src/main.cpp
+SRCS = 	src/main.cpp \
+		src/PmergeMe.cpp
 
 #------------------------------------------------------------------------------#
 #									 RULES									   #

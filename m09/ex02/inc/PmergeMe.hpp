@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MutantStack.hpp                                    :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/05/29 15:15:30 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/18 13:10:06 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MUTANTSTACK_HPP
-# define MUTANTSTACK_HPP
+#pragma once
 
 // COLOURS CODES
 # define NC "\e[0m"
@@ -28,21 +27,9 @@
 # include <algorithm>
 # include <stack>
 
-template <class T>
-class MutantStack : public std::stack<T> {
+class PmergeMe {
 	public:
-		MutantStack()									{ };
-		MutantStack(const MutantStack& other)			{*this = other;};
-		MutantStack& operator=(const MutantStack& rhs)	{if (this == &rhs) return (*this); return *this;};
-		~MutantStack()									{ };
-
-		typedef typename std::stack<T>::container_type::iterator iterator;
-		
-		iterator	begin(void)							{ return std::stack<T>::c.begin(); };
-		iterator	end(void)							{ return std::stack<T>::c.end(); };
 
 	private:
 
 };
-
-#endif

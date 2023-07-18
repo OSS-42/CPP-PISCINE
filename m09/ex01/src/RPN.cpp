@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:48:12 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/18 11:19:24 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/18 13:02:59 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ bool	isArgNumber(const std::string& arg) {
 	std::istringstream ss(arg);
 	double arg1;
 	ss >> arg1;
-	if (ss.fail() || !ss.eof() || arg1 < 0)
+	if (ss.fail() || !ss.eof() || arg1 < 0 || arg1 > 9)
 		return false;
 	return true;
 }
