@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:48:12 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/17 21:04:38 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/18 11:19:24 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,34 +28,34 @@ RPN::RPN(std::string args) {
 	while (args.size() > 0) {
 		long	position = args.find(delimiter);
 		std::string arg = args.substr(idx, position);
-		std::cout << YEL "AV: "<< args << NC << std::endl;
 		
 		if (isArgNumber(arg) == false && arg.find_first_not_of("+-*/") != std::string::npos)
 			throw std::runtime_error("Invalid value");
 		else if (isArgNumber(arg) == true) {
 			double arg1 = std::stod(arg);
 			m_pile.push(arg1);
-		} else if (arg.find_first_not_of("+-*/") != std::string::npos) {
+		} else if (arg.find_first_of("+-*/") != std::string::npos || args.size() == 1) {
 			double arg2 = m_pile.top();
 			m_pile.pop();
 			double arg1 = m_pile.top();
 			m_pile.pop();
 			m_pile.push(calculation(arg1, arg2, arg));
 		}
+		if (args.size() == 1)
+			break;
 		args = args.substr(position + 1, args.size());
-		std::cout << YEL "AP: " << args << NC << std::endl;
 	}
 	
 	int	first = 1;
 
-	while (m_pile.size() != 0) {
+	while (!m_pile.empty()) {
 		if (first != 1) 
 			std::cout << ", ";
 		first = 0;
-		std::cout << m_pile.top();
+		std::cout << GRN << m_pile.top();
 		m_pile.pop();
 	}
-	std::cout << std::endl;
+	std::cout << NC << std::endl;
 }
 
 RPN::RPN(const RPN& other) {
@@ -90,7 +90,7 @@ bool	isArgNumber(const std::string& arg) {
 	std::istringstream ss(arg);
 	double arg1;
 	ss >> arg1;
-	if (ss.fail() || !ss.eof())
+	if (ss.fail() || !ss.eof() || arg1 < 0)
 		return false;
 	return true;
 }
