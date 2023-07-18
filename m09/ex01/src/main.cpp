@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/18 11:19:06 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/18 13:27:22 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char** argv) {
 	if (argc != 2 || !argv[1]) {
-		std::cerr << RED "Error. Usage : ./RPN \"values and operation\"" << std::endl;
+		std::cout << RED "Error. Usage : ./RPN \"values and operation\"" << std::endl;
 		return 0;
 	} else {
 		try {
@@ -26,9 +26,8 @@ int main(int argc, char** argv) {
 				RPN calculator(argv[1]);
 		}
 		catch (std::exception& e) {
-			std::cerr << RED ">>> Error : " << e.what() << " <<<" NC << std::endl;
+			std::cout << RED ">>> Error : " << e.what() << " <<<" NC << std::endl;
 		}
 	}
-	
 	return 0;
 }
