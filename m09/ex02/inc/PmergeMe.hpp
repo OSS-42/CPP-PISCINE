@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/18 13:10:06 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:32:11 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 
 class PmergeMe {
 	public:
+		PmergeMe(std::string arglist);
+		PmergeMe(const PmergeMe& other);
+		PmergeMe& operator=(const PmergeMe& rhs);
+		~PmergeMe();
 
 	private:
 

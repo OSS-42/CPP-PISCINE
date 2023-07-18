@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/18 13:27:27 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:41:28 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
 		try {
 			std::string arglist = argv[1];
 			if (arglist.find_first_not_of("0123456789") != std::string::npos)
-				throw std::runtime_error("Invalide input value");
+				throw std::runtime_error("Invalid input value");
 			else
 				PmergeMe sort(argv[1]);
 		}

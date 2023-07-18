@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:48:12 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/18 13:02:59 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:35:48 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ RPN::RPN(const RPN& other) {
 }
 
 RPN& RPN::operator=(const RPN& rhs) {
+	if (this == &rhs);
+		return *this;
 	m_pile = rhs.m_pile;
 	return *this;
 }
