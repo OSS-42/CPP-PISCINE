@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:48:12 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/17 14:29:23 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/17 21:04:38 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,41 @@ In the end, we should be left with one number on the stack, which is the result.
 */
 
 RPN::RPN(std::string args) {
-	std::cout << GRN "RPN calculator active" NC << std::endl;
-
+	std::cout << GRN ">>> RPN calculator active <<<" NC << std::endl;
 	std::string delimiter = " ";
-
-	for (int idx = 0; idx < args.size(); ++idx) {
-		std::string arg = args.substr(idx, args.find(delimiter));
+	long	idx = 0;
+	
+	while (args.size() > 0) {
+		long	position = args.find(delimiter);
+		std::string arg = args.substr(idx, position);
+		std::cout << YEL "AV: "<< args << NC << std::endl;
 		
-		if (isArgNumber(arg) == false || arg.find_first_not_of("+-*/") != std::string::npos)
+		if (isArgNumber(arg) == false && arg.find_first_not_of("+-*/") != std::string::npos)
 			throw std::runtime_error("Invalid value");
 		else if (isArgNumber(arg) == true) {
 			double arg1 = std::stod(arg);
 			m_pile.push(arg1);
-		}
-		else if (arg.find_first_not_of("+-*/") != std::string::npos) {
-			double arg1 = m_pile.top();
-			m_pile.pop();
+		} else if (arg.find_first_not_of("+-*/") != std::string::npos) {
 			double arg2 = m_pile.top();
+			m_pile.pop();
+			double arg1 = m_pile.top();
 			m_pile.pop();
 			m_pile.push(calculation(arg1, arg2, arg));
 		}
+		args = args.substr(position + 1, args.size());
+		std::cout << YEL "AP: " << args << NC << std::endl;
 	}
+	
+	int	first = 1;
+
+	while (m_pile.size() != 0) {
+		if (first != 1) 
+			std::cout << ", ";
+		first = 0;
+		std::cout << m_pile.top();
+		m_pile.pop();
+	}
+	std::cout << std::endl;
 }
 
 RPN::RPN(const RPN& other) {
@@ -54,7 +68,7 @@ RPN& RPN::operator=(const RPN& rhs) {
 }
 
 RPN::~RPN() {
-	std::cout << RED "RPN calculator disable" NC << std::endl;
+	std::cout << RED ">>> RPN calculator disable <<<" NC << std::endl;
 }
 
 double RPN::calculation(double arg1, double arg2, std::string sign) {
@@ -69,6 +83,7 @@ double RPN::calculation(double arg1, double arg2, std::string sign) {
 			throw std::runtime_error("division by 0");
 		return (arg1 / arg2);
 	}
+	return -42;
 }
 
 bool	isArgNumber(const std::string& arg) {
