@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:06:04 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/19 14:27:10 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:35:02 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,8 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& rhs) {
 
 PmergeMe::~PmergeMe(void) {
 	std::cout << RED "Sorting Finished" NC << std::endl;
+}
+
+void PmergeMe::prepData(double arg) {
+	
 }
