@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/19 14:51:03 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:03:42 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <vector>
 #include <deque>
 #include <iostream>
+#include <list>
 
 // COLOURS CODES
 # define NC "\e[0m"
@@ -32,7 +33,7 @@
 
 class PmergeMe {
 	public:
-		PmergeMe(std::string arglist);
+		PmergeMe(std::list<double> arglist);
 		PmergeMe(const PmergeMe& other);
 		PmergeMe& operator=(const PmergeMe& rhs);
 		~PmergeMe();
@@ -41,6 +42,6 @@ class PmergeMe {
 
 	private:
 		std::vector<double>		m_vectorStack;
-		std::deque<double>		m_listStack;
+		std::deque<double>		m_dequeStack;
 
 };
