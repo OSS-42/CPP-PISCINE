@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/19 15:03:42 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/19 23:53:29 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,26 @@
 # include <algorithm>
 # include <stack>
 
+
+struct Pair {
+	size_t	first;
+	size_t	second;
+};
+
 class PmergeMe {
 	public:
 		PmergeMe(std::list<double> arglist);
 		PmergeMe(const PmergeMe& other);
 		PmergeMe& operator=(const PmergeMe& rhs);
 		~PmergeMe();
-
-		void	prepData(double arg);
+		
+		template<typename T>
+		void fordJohnsonSort(T& container);
 
 	private:
 		std::vector<double>		m_vectorStack;
 		std::deque<double>		m_dequeStack;
+		size_t					m_vectorTime;
+		size_t					m_dequeTime;
 
 };
