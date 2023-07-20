@@ -6,11 +6,10 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:06:04 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/20 00:01:46 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/20 00:12:44 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #include "../inc/PmergeMe.hpp"
 
 PmergeMe::PmergeMe(std::list<double> arglist) {
@@ -28,17 +27,17 @@ PmergeMe::PmergeMe(std::list<double> arglist) {
 	fordJohnsonSort(m_vectorStack);
 	m_vectorTime = ( std::clock() - start ) * 1000000 / (size_t) CLOCKS_PER_SEC;
 	
-	std::clock_t start = std::clock();
+	start = std::clock();
 	fordJohnsonSort(m_dequeStack);
 	m_dequeTime = ( std::clock() - start ) * 1000000 / (size_t) CLOCKS_PER_SEC;
 
-	std::cout << GRN "\nAfter Sorting: " NC ;
+	std::cout << GRN "After  Sorting: " NC ;
 	for (double idx = 0; idx < m_vectorStack.size(); ++idx) {
 		std::cout << m_vectorStack[idx] << " ";
 	}
 	std::cout << std::endl;
-	std::cout << "Time to sort " << m_vectorStack.size() << "elements in a Vector Container is: " << m_vectorTime << "us";
-	std::cout << "Time to sort " << m_dequeStack.size() << "elements in a Deque Container is: " << m_dequeTime << "us";
+	std::cout << "Time to sort " << m_vectorStack.size() << " elements in a Vector Container is: " << m_vectorTime << "μs" << std::endl;
+	std::cout << "Time to sort " << m_dequeStack.size() << " elements in a Deque  Container is: " << m_dequeTime << "μs" << std::endl;
 	
 }
 
@@ -71,11 +70,12 @@ void PmergeMe::fordJohnsonSort(T& container) {
 		}
 	}
 
+	size_t oddElementIndex;
 	// Handle the last unpaired element if the size is odd
-	If (container.size() % 2 == 0)
-		size_t oddElementIndex = container.size()
+	if (container.size() % 2 == 0)
+		oddElementIndex = container.size();
 	else
-		size_t oddElementIndex = container.size() - 1;
+		oddElementIndex = container.size() - 1;
 
 	// The index where the sorted section ends and the unsorted section begins
 	size_t sortedEnd = 0;
@@ -85,9 +85,8 @@ void PmergeMe::fordJohnsonSort(T& container) {
 		// Find the pair with the smallest element
 		size_t minIndex = 0;
 		for (size_t i = 1; i < pairsSize; ++i) {
-			if (container[pairs[i].first] < container[pairs[minIndex].first]) {
+			if (container[pairs[i].first] < container[pairs[minIndex].first])
 				minIndex = i;
-			}
 		}
 
 		// If the smallest element in the pairs is larger than the odd element, place the odd element in the sorted section
