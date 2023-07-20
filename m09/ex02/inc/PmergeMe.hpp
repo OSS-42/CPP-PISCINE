@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/20 16:25:28 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:29:55 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,4 @@ class PmergeMe {
 		std::deque<double>		m_dequeStack;
 		size_t					m_vectorTime;
 		size_t					m_dequeTime;
-
 };

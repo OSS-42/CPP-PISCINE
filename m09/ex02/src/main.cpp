@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/20 16:27:09 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:29:49 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
 				}
 				idx++;
 			} 
-				PmergeMe sort(arglist, start);
+			PmergeMe sort(arglist, start);
 		} catch (std::exception& e) {
 			std::cout << RED ">>> Error : " << e.what() << " <<<" NC << std::endl;
 		}
