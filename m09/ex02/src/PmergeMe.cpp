@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:06:04 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/19 23:55:37 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/20 00:01:46 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,13 @@ PmergeMe::PmergeMe(std::list<double> arglist) {
 	}
 	std::cout << std::endl;
 
+	std::clock_t start = std::clock();
 	fordJohnsonSort(m_vectorStack);
+	m_vectorTime = ( std::clock() - start ) * 1000000 / (size_t) CLOCKS_PER_SEC;
+	
+	std::clock_t start = std::clock();
 	fordJohnsonSort(m_dequeStack);
+	m_dequeTime = ( std::clock() - start ) * 1000000 / (size_t) CLOCKS_PER_SEC;
 
 	std::cout << GRN "\nAfter Sorting: " NC ;
 	for (double idx = 0; idx < m_vectorStack.size(); ++idx) {
