@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:06:04 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/20 00:12:44 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:04:53 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,60 +58,41 @@ PmergeMe::~PmergeMe(void) {
 
 template<typename T>
 void PmergeMe::fordJohnsonSort(T& container) {
-	// Create and sort the pairs
-	Pair* pairs = new Pair[container.size() / 2];
-	size_t pairsSize = container.size() / 2;
+	size_t	n = container.size();
+
+	std::vector<Pair> pairs(n / 2);
+	size_t pairsSize = n / 2;
+
 	for (size_t i = 0; i < pairsSize; ++i) {
 		pairs[i].first = i * 2;
 		pairs[i].second = i * 2 + 1;
 		if (container[pairs[i].first] > container[pairs[i].second]) {
-			// Swap elements in container to make sure the pair is sorted
 			std::swap(container[pairs[i].first], container[pairs[i].second]);
 		}
 	}
 
-	size_t oddElementIndex;
-	// Handle the last unpaired element if the size is odd
-	if (container.size() % 2 == 0)
-		oddElementIndex = container.size();
-	else
-		oddElementIndex = container.size() - 1;
+	std::sort(pairs.begin(), pairs.end(), [&](const Pair &a, const Pair &b) {
+		return container[a.second] < container[b.second];
+	});
+	
+	std::vector<size_t> temp(n);
+	for (size_t i = 0; i < pairsSize; ++i) {
+		temp[i] = container[pairs[i].second];
+	}
+	size_t j = pairsSize;
+	if (n % 2 == 1) {
+		temp[j++] = container[n - 1];
+	}
+	for (size_t i = pairsSize; i-- > 0;) {
+		temp[j++] = container[pairs[i].first];
+	}
 
-	// The index where the sorted section ends and the unsorted section begins
-	size_t sortedEnd = 0;
-
-	// While there are still pairs left
-	while (pairsSize > 0) {
-		// Find the pair with the smallest element
-		size_t minIndex = 0;
-		for (size_t i = 1; i < pairsSize; ++i) {
-			if (container[pairs[i].first] < container[pairs[minIndex].first])
-				minIndex = i;
-		}
-
-		// If the smallest element in the pairs is larger than the odd element, place the odd element in the sorted section
-		if (container.size() % 2 != 0 && container[pairs[minIndex].first] > container[oddElementIndex]) {
-			std::swap(container[sortedEnd], container[oddElementIndex]);
-			oddElementIndex = sortedEnd;
+	size_t i = 0, k = n;
+	for (j = 0; j < n; j++) {
+		if (k <= n && (i == pairsSize || temp[i] > temp[k])) {
+			container[j] = temp[k++];
 		} else {
-			// Move the smallest element to the end of the sorted section
-			std::swap(container[sortedEnd], container[pairs[minIndex].first]);
-			++sortedEnd;
-
-			// If the pair now only has one element, remove it from the pairs
-			if (pairs[minIndex].first != pairs[minIndex].second) {
-				pairs[minIndex].first = pairs[minIndex].second;
-			} else {
-				pairs[minIndex] = pairs[pairsSize - 1];
-				--pairsSize;
-			}
+			container[j] = temp[i++];
 		}
 	}
-
-	// If the last unpaired element is still unsorted, move it to the end of the sorted section
-	if (container.size() % 2 != 0 && oddElementIndex != container.size() - 1) {
-		std::swap(container[container.size() - 1], container[oddElementIndex]);
-	}
-
-	delete[] pairs;
 }
