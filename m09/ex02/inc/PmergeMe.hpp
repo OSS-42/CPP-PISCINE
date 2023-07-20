@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/20 09:57:46 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:24:07 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ class PmergeMe {
 		PmergeMe& operator=(const PmergeMe& rhs);
 		~PmergeMe();
 		
+		// template <typename RandomAccessIterator>
+		// void fordJohnsonSort(RandomAccessIterator begin, RandomAccessIterator end);
+
 		template<typename T>
 		void fordJohnsonSort(T& container);
 
