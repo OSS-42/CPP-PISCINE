@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:58:45 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/20 12:24:07 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:36:27 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ struct Pair {
 
 class PmergeMe {
 	public:
-		PmergeMe(std::list<double> arglist);
+		PmergeMe(std::list<double> arglist, std::clock_t start);
 		PmergeMe(const PmergeMe& other);
 		PmergeMe& operator=(const PmergeMe& rhs);
 		~PmergeMe();
@@ -56,5 +56,4 @@ class PmergeMe {
 		std::deque<double>		m_dequeStack;
 		size_t					m_vectorTime;
 		size_t					m_dequeTime;
-
 };

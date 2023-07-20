@@ -6,13 +6,13 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:06:04 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/20 12:27:32 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:36:14 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/PmergeMe.hpp"
 
-PmergeMe::PmergeMe(std::list<double> arglist) {
+PmergeMe::PmergeMe(std::list<double> arglist, std::clock_t start) {
 	std::cout << GRN "Starting Sorting" NC << std::endl;
 	m_vectorStack.assign(arglist.begin(), arglist.end());
 	m_dequeStack.assign(arglist.begin(), arglist.end());
@@ -23,15 +23,14 @@ PmergeMe::PmergeMe(std::list<double> arglist) {
 	}
 	std::cout << std::endl;
 
-	std::clock_t start = std::clock();
 	// fordJohnsonSort(m_vectorStack.begin(), m_vectorStack.end());
 	fordJohnsonSort(m_vectorStack);
-	m_vectorTime = ( std::clock() - start ) * 1000000 / (size_t) CLOCKS_PER_SEC;
+	m_vectorTime = (std::clock() - start ) * 1000000 / (size_t) CLOCKS_PER_SEC;
 	
 	start = std::clock();
 	// fordJohnsonSort(m_dequeStack.begin(), m_dequeStack.end());
 	fordJohnsonSort(m_dequeStack);
-	m_dequeTime = ( std::clock() - start ) * 1000000 / (size_t) CLOCKS_PER_SEC;
+	m_dequeTime = (std::clock() - start ) * 1000000 / (size_t) CLOCKS_PER_SEC;
 
 	std::cout << GRN "After  Sorting: " NC ;
 	for (double idx = 0; idx < m_vectorStack.size(); ++idx) {
