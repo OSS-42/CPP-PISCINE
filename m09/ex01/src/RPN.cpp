@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:48:12 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/18 14:35:48 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/20 21:24:48 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ RPN::RPN(std::string args) {
 		std::string arg = args.substr(idx, position);
 		
 		if (isArgNumber(arg) == false && arg.find_first_not_of("+-*/") != std::string::npos)
-			throw std::runtime_error("Invalid value");
+			throw std::invalid_argument("Invalid value");
 		else if (isArgNumber(arg) == true) {
 			double arg1 = std::stod(arg);
 			m_pile.push(arg1);
 		} else if (arg.find_first_of("+-*/") != std::string::npos || args.size() == 1) {
+			if (m_pile.size() < 2)
+				throw std::runtime_error("Operand issue");
 			double arg2 = m_pile.top();
 			m_pile.pop();
 			double arg1 = m_pile.top();
@@ -63,7 +65,7 @@ RPN::RPN(const RPN& other) {
 }
 
 RPN& RPN::operator=(const RPN& rhs) {
-	if (this == &rhs);
+	if (this == &rhs)
 		return *this;
 	m_pile = rhs.m_pile;
 	return *this;

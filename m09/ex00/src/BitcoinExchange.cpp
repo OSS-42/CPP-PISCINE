@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:01:10 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/06/06 15:08:38 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:26:07 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // ------ CANNON FORM ------
 
 BitcoinExchange::BitcoinExchange(void) {
-	std::cout << GRN "Exchange is now open" NC << std::endl;
+	std::cout << GRN ">>> Exchange is now open <<<" NC << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {
@@ -30,7 +30,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
 }
 
 BitcoinExchange::~BitcoinExchange(void) {
-	std::cout << RED "Exchange is now closed" NC << std::endl;
+	std::cout << RED ">>> Exchange is now closed <<<" NC << std::endl;
 }
 
 // ----- MEMBER FUNCTIONS -----

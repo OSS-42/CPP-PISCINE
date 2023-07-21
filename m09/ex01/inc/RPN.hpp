@@ -40,7 +40,7 @@ class RPN {
 		double	calculation(double arg1, double arg2, std::string sign);
 
 	private:
-		std::stack<unsigned int>	m_pile;
+		std::stack<double>	m_pile;
 
 };
 
