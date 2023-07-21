@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/20 13:32:47 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:29:49 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
 		try {
 			long idx = 1;
 			std::list<double>	arglist;
-			std::clock_t		start = 0;
+			std::clock_t		start = std::clock();
 			
 			while (idx < argc) {
 				std::string arg = argv[idx];
