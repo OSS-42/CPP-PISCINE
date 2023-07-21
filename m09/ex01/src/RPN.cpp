@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 10:48:12 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/20 21:30:24 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:21:16 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ RPN::RPN(std::string args) {
 			double arg1 = std::stod(arg);
 			m_pile.push(arg1);
 		} else if (arg.find_first_of("+-*/") != std::string::npos || args.size() == 1) {
-			if (m_pile.size() < 2)
-				throw std::runtime_error("Operand issue");
+			if (m_pile.size() < 2 || arg.size() > 1) {
+				if (arg.find_first_of("+-*/") != std::string::npos)
+					throw std::runtime_error("Operand issue");
+				else
+					break;
+			}
 			double arg2 = m_pile.top();
 			m_pile.pop();
 			double arg1 = m_pile.top();
@@ -45,6 +49,7 @@ RPN::RPN(std::string args) {
 		}
 		if (args.size() == 1)
 			break;
+		
 		args = args.substr(position + 1, args.size());
 	}
 	

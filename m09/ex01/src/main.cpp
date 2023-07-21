@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:57:18 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/18 13:27:22 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/21 09:32:31 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,6 @@ int main(int argc, char** argv) {
 	}
 	return 0;
 }
+
+//./RPN "7 7 *- 7 - "
+//./RPN "7 7 * 7 -                  "

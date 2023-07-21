@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:01:10 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/20 20:26:07 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/21 09:39:46 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 		else {
 			size_t	pos = line.find(" | ");
 			if (pos == std::string::npos)
-				std::cerr << line  << " : " << RED "wrong input format" NC << std::endl;
+				std::cout << line  << " : " << RED "wrong input format" NC << std::endl;
 			else {
 				std::string date = line.substr(0, pos);
 				std::string rawAmount = line.substr(pos + 3, line.size());
@@ -66,8 +66,10 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 					double	amount;
 					
 					amount = std::stod(rawAmount);
+					if (amount < 0 || amount > 1000)
+						std::cout << line  << " : " << RED "value out of range" NC << std::endl;
 					if (isBeforeFirst(date, _btcDB) || isAfterToday(date)) {
-						std::cerr << date << " : " << RED << "date before DB first date or after today, no exchange rate." NC << std::endl;
+						std::cout << date << " : " << RED << "date before DB first date or after today, no exchange rate." NC << std::endl;
 					} else {
 						rate = findRate(date);
 						if (rate == -1)
@@ -78,7 +80,7 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 						}
 					}
 				} else
-					std::cerr << line  << " : " << RED "input issue." NC << std::endl;
+					std::cout << line  << " : " << RED "input issue." NC << std::endl;
 			}
 		}
 	}
