@@ -6,7 +6,7 @@
 /*   By: ewurstei <ewurstei@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 10:01:10 by ewurstei          #+#    #+#             */
-/*   Updated: 2023/07/21 09:39:46 by ewurstei         ###   ########.fr       */
+/*   Updated: 2023/07/21 11:59:29 by ewurstei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ void	BitcoinExchange::checkInput(const std::string& filename) {
 					double	amount;
 					
 					amount = std::stod(rawAmount);
-					if (amount < 0 || amount > 1000)
-						std::cout << line  << " : " << RED "value out of range" NC << std::endl;
 					if (isBeforeFirst(date, _btcDB) || isAfterToday(date)) {
 						std::cout << date << " : " << RED << "date before DB first date or after today, no exchange rate." NC << std::endl;
 					} else {
 						rate = findRate(date);
 						if (rate == -1)
 							std::cout << date << " : " << RED "No exchange rate found, date invalid" NC << std::endl;
+						else if (amount < 0 || amount > 1000)
+							std::cout << line  << " : " << RED "value out of range" NC << std::endl;
 						else {
 							value = rate * amount;
 							std::cout << std::fixed << "The exchange value of " << amount << "BTC on " << date << " at rate of " << rate << " is " GRN << value << NC << std::endl;
