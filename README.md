@@ -1,2 +1,2 @@
-# CPP-PISCINE-PART2
-CPP Piscine exercises 05 to 09
+# CPP-PISCINE
+CPP Piscine exercises 01 to 09
